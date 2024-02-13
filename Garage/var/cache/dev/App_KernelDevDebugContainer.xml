@@ -25,6 +25,8 @@
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
       <parameter key="MakerBundle">Symfony\Bundle\MakerBundle\MakerBundle</parameter>
+      <parameter key="VichUploaderBundle">Vich\UploaderBundle\VichUploaderBundle</parameter>
+      <parameter key="LiipImagineBundle">Liip\ImagineBundle\LiipImagineBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -75,9 +77,18 @@
         <parameter key="path">C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\maker-bundle\src</parameter>
         <parameter key="namespace">Symfony\Bundle\MakerBundle</parameter>
       </parameter>
+      <parameter key="VichUploaderBundle" type="collection">
+        <parameter key="path">C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle</parameter>
+        <parameter key="namespace">Vich\UploaderBundle</parameter>
+      </parameter>
+      <parameter key="LiipImagineBundle" type="collection">
+        <parameter key="path">C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\liip\imagine-bundle</parameter>
+        <parameter key="namespace">Liip\ImagineBundle</parameter>
+      </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">App_KernelDevDebugContainer</parameter>
+    <parameter key="app.path.product_images">/uploads/images</parameter>
     <parameter key="event_dispatcher.event_aliases" type="collection">
       <parameter key="Symfony\Component\Console\Event\ConsoleCommandEvent">console.command</parameter>
       <parameter key="Symfony\Component\Console\Event\ConsoleErrorEvent">console.error</parameter>
@@ -212,7 +223,9 @@
     <parameter key="doctrine.migrations.preferred_connection">null</parameter>
     <parameter key="env(VAR_DUMPER_SERVER)">127.0.0.1:9912</parameter>
     <parameter key="twig.form.resources" type="collection">
+      <parameter>@VichUploader/Form/fields.html.twig</parameter>
       <parameter>form_div_layout.html.twig</parameter>
+      <parameter>@LiipImagine/Form/form_div_layout.html.twig</parameter>
     </parameter>
     <parameter key="twig.default_path">C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage/templates</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
@@ -244,6 +257,100 @@
           <parameter>event</parameter>
         </parameter>
       </parameter>
+    </parameter>
+    <parameter key="vich_uploader.default_filename_attribute_suffix">_name</parameter>
+    <parameter key="vich_uploader.mappings" type="collection">
+      <parameter key="product_images" type="collection">
+        <parameter key="uri_prefix">/uploads/images</parameter>
+        <parameter key="upload_destination">C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage/public/uploads/images</parameter>
+        <parameter key="namer" type="collection">
+          <parameter key="service">Vich\UploaderBundle\Naming\SmartUniqueNamer.product_images</parameter>
+          <parameter key="options" type="collection"/>
+        </parameter>
+        <parameter key="directory_namer" type="collection">
+          <parameter key="service">null</parameter>
+          <parameter key="options">null</parameter>
+        </parameter>
+        <parameter key="delete_on_remove">true</parameter>
+        <parameter key="delete_on_update">true</parameter>
+        <parameter key="inject_on_load">false</parameter>
+        <parameter key="db_driver">orm</parameter>
+      </parameter>
+    </parameter>
+    <parameter key="vich_uploader.file_injector.class">Vich\UploaderBundle\Injector\FileInjector</parameter>
+    <parameter key="liip_imagine.resolvers" type="collection">
+      <parameter key="default" type="collection">
+        <parameter key="web_path" type="collection">
+          <parameter key="web_root">C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage/public</parameter>
+          <parameter key="cache_prefix">media/cache</parameter>
+        </parameter>
+      </parameter>
+    </parameter>
+    <parameter key="liip_imagine.loaders" type="collection">
+      <parameter key="default" type="collection">
+        <parameter key="filesystem" type="collection">
+          <parameter key="locator">filesystem</parameter>
+          <parameter key="data_root" type="collection">
+            <parameter>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage/public</parameter>
+          </parameter>
+          <parameter key="allow_unresolvable_data_roots">false</parameter>
+          <parameter key="bundle_resources" type="collection">
+            <parameter key="enabled">false</parameter>
+            <parameter key="access_control_type">blacklist</parameter>
+            <parameter key="access_control_list" type="collection"/>
+          </parameter>
+        </parameter>
+      </parameter>
+    </parameter>
+    <parameter key="liip_imagine.jpegoptim.binary">/usr/bin/jpegoptim</parameter>
+    <parameter key="liip_imagine.jpegoptim.stripAll">true</parameter>
+    <parameter key="liip_imagine.jpegoptim.max">null</parameter>
+    <parameter key="liip_imagine.jpegoptim.progressive">true</parameter>
+    <parameter key="liip_imagine.jpegoptim.tempDir">null</parameter>
+    <parameter key="liip_imagine.optipng.binary">/usr/bin/optipng</parameter>
+    <parameter key="liip_imagine.optipng.level">7</parameter>
+    <parameter key="liip_imagine.optipng.stripAll">true</parameter>
+    <parameter key="liip_imagine.optipng.tempDir">null</parameter>
+    <parameter key="liip_imagine.pngquant.binary">/usr/bin/pngquant</parameter>
+    <parameter key="liip_imagine.mozjpeg.binary">/opt/mozjpeg/bin/cjpeg</parameter>
+    <parameter key="liip_imagine.cwebp.binary">/usr/bin/cwebp</parameter>
+    <parameter key="liip_imagine.cwebp.tempDir">null</parameter>
+    <parameter key="liip_imagine.cwebp.q">75</parameter>
+    <parameter key="liip_imagine.cwebp.alphaQ">100</parameter>
+    <parameter key="liip_imagine.cwebp.m">4</parameter>
+    <parameter key="liip_imagine.cwebp.alphaFilter">fast</parameter>
+    <parameter key="liip_imagine.cwebp.alphaMethod">1</parameter>
+    <parameter key="liip_imagine.cwebp.exact">false</parameter>
+    <parameter key="liip_imagine.cwebp.metadata" type="collection">
+      <parameter>none</parameter>
+    </parameter>
+    <parameter key="liip_imagine.driver_service">liip_imagine.gd</parameter>
+    <parameter key="liip_imagine.cache.resolver.default">default</parameter>
+    <parameter key="liip_imagine.default_image">null</parameter>
+    <parameter key="liip_imagine.filter_sets" type="collection">
+      <parameter key="cache" type="collection">
+        <parameter key="quality">100</parameter>
+        <parameter key="jpeg_quality">null</parameter>
+        <parameter key="png_compression_level">null</parameter>
+        <parameter key="png_compression_filter">null</parameter>
+        <parameter key="format">null</parameter>
+        <parameter key="animated">false</parameter>
+        <parameter key="cache">null</parameter>
+        <parameter key="data_loader">null</parameter>
+        <parameter key="default_image">null</parameter>
+        <parameter key="filters" type="collection"/>
+        <parameter key="post_processors" type="collection"/>
+      </parameter>
+    </parameter>
+    <parameter key="liip_imagine.binary.loader.default">default</parameter>
+    <parameter key="liip_imagine.controller.filter_action">Liip\ImagineBundle\Controller\ImagineController::filterAction</parameter>
+    <parameter key="liip_imagine.controller.filter_runtime_action">Liip\ImagineBundle\Controller\ImagineController::filterRuntimeAction</parameter>
+    <parameter key="liip_imagine.webp.generate">false</parameter>
+    <parameter key="liip_imagine.webp.options" type="collection">
+      <parameter key="quality">100</parameter>
+      <parameter key="cache">null</parameter>
+      <parameter key="data_loader">null</parameter>
+      <parameter key="post_processors" type="collection"/>
     </parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
@@ -334,6 +441,10 @@
         <parameter>serializer</parameter>
         <parameter>@WebProfiler/Collector/serializer.html.twig</parameter>
       </parameter>
+      <parameter key="Vich\UploaderBundle\DataCollector\MappingCollector" type="collection">
+        <parameter>vich_uploader.mapping_collector</parameter>
+        <parameter>@VichUploader/Collector/mapping_collector.html.twig</parameter>
+      </parameter>
       <parameter key="data_collector.config" type="collection">
         <parameter>config</parameter>
         <parameter>@WebProfiler/Collector/config.html.twig</parameter>
@@ -346,6 +457,82 @@
     <service id="kernel" class="App\Kernel" public="true" synthetic="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="routing.route_loader"/>
+    </service>
+    <service id="App\Entity" class="App\Entity" abstract="true">
+      <tag name="container.excluded" source="in &quot;config/services.yaml&quot;"/>
+    </service>
+    <service id="App\Controller\DashboardController" class="App\Controller\DashboardController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\DashboardController"/>
+      </call>
+    </service>
+    <service id="App\Controller\RegistrationController" class="App\Controller\RegistrationController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\RegistrationController"/>
+      </call>
+    </service>
+    <service id="App\Controller\SecurityController" class="App\Controller\SecurityController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\SecurityController"/>
+      </call>
+    </service>
+    <service id="App\Controller\TemoignageController" class="App\Controller\TemoignageController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\TemoignageController"/>
+      </call>
+    </service>
+    <service id="App\Controller\TestController" class="App\Controller\TestController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\TestController"/>
+      </call>
+    </service>
+    <service id="App\Controller\UserController" class="App\Controller\UserController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\UserController"/>
+      </call>
+    </service>
+    <service id="App\Controller\VoitureController" class="App\Controller\VoitureController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.jUv.zyj.App\Controller\VoitureController"/>
+      </call>
+    </service>
+    <service id="App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\TemoignageType" class="App\Form\TemoignageType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Form\VoitureCreatingType" class="App\Form\VoitureCreatingType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="App\Repository\TemoignageRepository" class="App\Repository\TemoignageRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\VoitureRepository" class="App\Repository\VoitureRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Security\AppAuthAuthenticator" class="App\Security\AppAuthAuthenticator" autowire="true" autoconfigure="true">
+      <argument type="service" id="router.default"/>
     </service>
     <service id="argument_metadata_factory" class="Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadataFactory"/>
     <service id="argument_resolver.backed_enum_resolver" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\BackedEnumValueResolver">
@@ -374,7 +561,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.L.EDYUC"/>
+      <argument type="service" id=".service_locator._dhnUph"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -516,6 +703,7 @@
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_granted_attribute_expression_language" type="service" id="cache.security_is_granted_attribute_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="debug.security.firewall" type="service" id="debug.security.firewall" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.security_token_verifier" type="service" id="cache.security_token_verifier" on-invalid="ignore_uninitialized"/>
         <argument key="debug.security.firewall.authenticator.main" type="service" id="debug.security.firewall.authenticator.main" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.main" type="service" id="monolog.handler.main" on-invalid="ignore_uninitialized"/>
         <argument key="monolog.handler.console" type="service" id="monolog.handler.console" on-invalid="ignore_uninitialized"/>
@@ -602,6 +790,9 @@
           <argument>reset</argument>
         </argument>
         <argument key="debug.security.firewall" type="collection">
+          <argument>reset</argument>
+        </argument>
+        <argument key="cache.security_token_verifier" type="collection">
           <argument>reset</argument>
         </argument>
         <argument key="debug.security.firewall.authenticator.main" type="collection">
@@ -780,6 +971,7 @@
         <argument>cache.doctrine.orm.default.query</argument>
         <argument>cache.security_expression_language</argument>
         <argument>cache.security_is_granted_attribute_expression_language</argument>
+        <argument>cache.security_token_verifier</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:clear</argument>
@@ -827,6 +1019,7 @@
         <argument>cache.doctrine.orm.default.query</argument>
         <argument>cache.security_expression_language</argument>
         <argument>cache.security_is_granted_attribute_expression_language</argument>
+        <argument>cache.security_token_verifier</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:delete</argument>
@@ -851,6 +1044,7 @@
         <argument>cache.doctrine.orm.default.query</argument>
         <argument>cache.security_expression_language</argument>
         <argument>cache.security_is_granted_attribute_expression_language</argument>
+        <argument>cache.security_token_verifier</argument>
       </argument>
       <call method="setName">
         <argument>cache:pool:list</argument>
@@ -1270,14 +1464,23 @@
       <argument type="service" id="form.registry"/>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type</argument>
+        <argument>App\Form</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
+        <argument>Vich\UploaderBundle\Form\Type</argument>
+        <argument>Liip\ImagineBundle\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\RegistrationFormType</argument>
+        <argument>App\Form\TemoignageType</argument>
+        <argument>App\Form\VoitureCreatingType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ColorType</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type\EntityType</argument>
+        <argument>Vich\UploaderBundle\Form\Type\VichFileType</argument>
+        <argument>Vich\UploaderBundle\Form\Type\VichImageType</argument>
+        <argument>Liip\ImagineBundle\Form\Type\ImageType</argument>
       </argument>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type\TransformationFailureExtension</argument>
@@ -1549,6 +1752,7 @@
         <argument key="cache.validator_expression_language" type="service" id="cache.validator_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_granted_attribute_expression_language" type="service" id="cache.security_is_granted_attribute_expression_language" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.security_token_verifier" type="service" id="cache.security_token_verifier" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="cache.global_clearer" class="Symfony\Component\HttpKernel\CacheClearer\Psr6CacheClearer" public="true">
@@ -1566,6 +1770,7 @@
         <argument key="cache.doctrine.orm.default.query" type="service" id="cache.doctrine.orm.default.query" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_expression_language" type="service" id="cache.security_expression_language" on-invalid="ignore_uninitialized"/>
         <argument key="cache.security_is_granted_attribute_expression_language" type="service" id="cache.security_is_granted_attribute_expression_language" on-invalid="ignore_uninitialized"/>
+        <argument key="cache.security_token_verifier" type="service" id="cache.security_token_verifier" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
     <service id="identity_translator" class="Symfony\Component\Translation\IdentityTranslator"/>
@@ -1996,6 +2201,7 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.ar.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.ar.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.ar.yaml</argument>
           </argument>
           <argument key="az" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.az.xlf</argument>
@@ -2011,6 +2217,7 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.bg.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.bg.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.bg.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.bg.yaml</argument>
           </argument>
           <argument key="bs" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.bs.xlf</argument>
@@ -2021,11 +2228,13 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.ca.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.ca.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.ca.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.ca.yaml</argument>
           </argument>
           <argument key="cs" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.cs.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.cs.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.cs.yaml</argument>
           </argument>
           <argument key="cy" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.cy.xlf</argument>
@@ -2039,6 +2248,7 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.de.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.de.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.de.yaml</argument>
           </argument>
           <argument key="el" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.el.xlf</argument>
@@ -2049,11 +2259,13 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.en.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.en.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.en.yaml</argument>
           </argument>
           <argument key="es" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.es.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.es.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.es.yaml</argument>
           </argument>
           <argument key="et" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.et.xlf</argument>
@@ -2074,11 +2286,13 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.fi.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.fi.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.fi.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.fi.yaml</argument>
           </argument>
           <argument key="fr" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.fr.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.fr.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.fr.yaml</argument>
           </argument>
           <argument key="gl" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.gl.xlf</argument>
@@ -2099,6 +2313,7 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.hu.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.hu.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.hu.yaml</argument>
           </argument>
           <argument key="hy" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.hy.xlf</argument>
@@ -2114,6 +2329,7 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.it.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.it.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.it.yaml</argument>
           </argument>
           <argument key="ja" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.ja.xlf</argument>
@@ -2129,6 +2345,7 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.lt.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.lt.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.lt.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.lt.yaml</argument>
           </argument>
           <argument key="lv" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.lv.xlf</argument>
@@ -2159,6 +2376,7 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.nl.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.nl.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.nl.yaml</argument>
           </argument>
           <argument key="nn" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.nn.xlf</argument>
@@ -2174,11 +2392,13 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.pl.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.pl.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.pl.yaml</argument>
           </argument>
           <argument key="pt" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.pt.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.pt.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.pt.yaml</argument>
           </argument>
           <argument key="pt_BR" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.pt_BR.xlf</argument>
@@ -2194,6 +2414,7 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.ru.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.ru.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.ru.yaml</argument>
           </argument>
           <argument key="sk" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.sk.xlf</argument>
@@ -2204,6 +2425,7 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.sl.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.sl.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.sl.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.sl.yaml</argument>
           </argument>
           <argument key="sq" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.sq.xlf</argument>
@@ -2239,11 +2461,13 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.tr.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.tr.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.tr.yaml</argument>
           </argument>
           <argument key="uk" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.uk.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.uk.xlf</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.uk.yaml</argument>
           </argument>
           <argument key="ur" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations\validators.ur.xlf</argument>
@@ -2270,11 +2494,15 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations\validators.zh_TW.xlf</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations\security.zh_TW.xlf</argument>
           </argument>
+          <argument key="vn" type="collection">
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations\messages.vn.yaml</argument>
+          </argument>
         </argument>
         <argument key="scanned_directories" type="collection">
           <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations</argument>
           <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations</argument>
           <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations</argument>
+          <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations</argument>
           <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage/translations</argument>
           <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\framework-bundle/translations</argument>
           <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -2288,12 +2516,14 @@
           <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-bundle/translations</argument>
           <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\monolog-bundle/translations</argument>
           <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\maker-bundle\src/translations</argument>
+          <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\liip\imagine-bundle/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\validator/Resources/translations</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\form/Resources/translations</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-core/Resources/translations</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/translations</argument>
             <argument>translations</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\framework-bundle/translations</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\doctrine\doctrine-bundle/translations</argument>
@@ -2307,6 +2537,7 @@
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-bundle/translations</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\monolog-bundle/translations</argument>
             <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\maker-bundle\src/translations</argument>
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\liip\imagine-bundle/translations</argument>
           </argument>
         </argument>
       </argument>
@@ -3159,6 +3390,14 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
+        <argument>kernel.response</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.rememberme.response_listener"/>
+          <argument>onKernelResponse</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
         <argument>console.command</argument>
         <argument type="collection">
           <argument type="service_closure" id="monolog.handler.console"/>
@@ -3220,7 +3459,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.L.EDYUC"/>
+      <argument type="service" id=".service_locator._dhnUph"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -3702,7 +3941,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.Za9MpXe"/>
+      <argument type="service" id=".service_locator.eaZinUH"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4487,6 +4726,9 @@
         <argument type="service" id="serializer.data_collector"/>
       </call>
       <call method="add">
+        <argument type="service" id="Vich\UploaderBundle\DataCollector\MappingCollector"/>
+      </call>
+      <call method="add">
         <argument type="service" id="data_collector.config"/>
       </call>
     </service>
@@ -4618,6 +4860,10 @@
       <call method="addInstance">
         <argument>cache.security_is_granted_attribute_expression_language</argument>
         <argument type="service" id="cache.security_is_granted_attribute_expression_language"/>
+      </call>
+      <call method="addInstance">
+        <argument>cache.security_token_verifier</argument>
+        <argument type="service" id="cache.security_token_verifier"/>
       </call>
     </service>
     <service id="cache_pool_clearer.cache_warmer" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\CachePoolClearerCacheWarmer">
@@ -4797,8 +5043,14 @@
       </call>
     </service>
     <service id="doctrine.dbal.default_connection.event_manager" class="Symfony\Bridge\Doctrine\ContainerAwareEventManager">
-      <argument type="service" id=".service_locator.XtmiKbi"/>
+      <argument type="service" id=".service_locator.cBKii5e"/>
       <argument type="collection">
+        <argument type="collection">
+          <argument type="collection">
+            <argument>preUpdate</argument>
+          </argument>
+          <argument>vich_uploader.listener.clean.product_images</argument>
+        </argument>
         <argument type="collection">
           <argument type="collection">
             <argument>postGenerateSchema</argument>
@@ -4852,6 +5104,30 @@
             <argument>postFlush</argument>
           </argument>
           <argument>turbo.doctrine.event_listener</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>preRemove</argument>
+          </argument>
+          <argument>vich_uploader.listener.remove.product_images</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>postFlush</argument>
+          </argument>
+          <argument>vich_uploader.listener.remove.product_images</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>prePersist</argument>
+          </argument>
+          <argument>vich_uploader.listener.upload.product_images</argument>
+        </argument>
+        <argument type="collection">
+          <argument type="collection">
+            <argument>preUpdate</argument>
+          </argument>
+          <argument>vich_uploader.listener.upload.product_images</argument>
         </argument>
       </argument>
     </service>
@@ -4945,7 +5221,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.Xbsa8iG"/>
+      <argument type="service" id=".service_locator.jTEuYBV"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -5130,6 +5406,7 @@
       <call method="setEntityNamespaces">
         <argument type="collection">
           <argument key="App">App\Entity</argument>
+          <argument key="VichUploaderBundle">Vich\UploaderBundle\Entity</argument>
         </argument>
       </call>
       <call method="setMetadataCache">
@@ -5183,6 +5460,16 @@
         <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\src\Entity</argument>
       </argument>
       <argument>true</argument>
+    </service>
+    <service id="doctrine.orm.default_xml_metadata_driver" class="Doctrine\ORM\Mapping\Driver\SimplifiedXmlDriver">
+      <argument type="collection">
+        <argument key="C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle\config\doctrine">Vich\UploaderBundle\Entity</argument>
+      </argument>
+      <argument>.orm.xml</argument>
+      <argument>true</argument>
+      <call method="setGlobalBasename">
+        <argument>mapping</argument>
+      </call>
     </service>
     <service id="cache.doctrine.orm.default.metadata" class="Symfony\Component\Cache\Adapter\ArrayAdapter"/>
     <service id="cache.doctrine.orm.default.result" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
@@ -5620,6 +5907,12 @@
         <argument type="service" id="turbo.twig.extension"/>
       </call>
       <call method="addExtension">
+        <argument type="service" id="Vich\UploaderBundle\Twig\Extension\UploaderExtension"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="liip_imagine.templating.filter_extension"/>
+      </call>
+      <call method="addExtension">
         <argument type="service" id="stimulus.twig_extension"/>
       </call>
       <call method="addGlobal">
@@ -5676,7 +5969,9 @@
         <argument key="C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\twig-bridge/Resources/views/Form">null</argument>
       </argument>
       <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage/templates</argument>
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument>*.twig</argument>
+      </argument>
     </service>
     <service id="twig.template_cache_warmer" class="Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheWarmer">
       <tag name="kernel.cache_warmer"/>
@@ -5727,6 +6022,22 @@
       <call method="addPath">
         <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\symfony\security-bundle/Resources/views</argument>
         <argument>!Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/templates</argument>
+        <argument>VichUploader</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\vich\uploader-bundle/templates</argument>
+        <argument>!VichUploader</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\liip\imagine-bundle/Resources/views</argument>
+        <argument>LiipImagine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\vendor\liip\imagine-bundle/Resources/views</argument>
+        <argument>!LiipImagine</argument>
       </call>
       <call method="addPath">
         <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage/templates</argument>
@@ -5811,7 +6122,7 @@
       <argument>,</argument>
     </service>
     <service id="twig.runtime_loader" class="Twig\RuntimeLoader\ContainerRuntimeLoader">
-      <argument type="service" id=".service_locator.MsHkddy"/>
+      <argument type="service" id=".service_locator.ADJDD.l"/>
     </service>
     <service id="twig.error_renderer.html" class="Symfony\Bridge\Twig\ErrorRenderer\TwigErrorRenderer">
       <argument type="service" id="twig"/>
@@ -6035,7 +6346,7 @@
       <argument type="service" id=".service_locator.BlxN3Cw"/>
       <argument type="collection">
         <argument key="dev">null</argument>
-        <argument key="main">null</argument>
+        <argument key="main" type="service" id=".service_locator.4uvIF6K"/>
       </argument>
     </service>
     <service id="security.user_value_resolver" class="Symfony\Component\Security\Http\Controller\UserValueResolver">
@@ -6122,6 +6433,14 @@
       <argument type="service" id="request_stack" on-invalid="null"/>
       <argument type="service" id="router.default" on-invalid="null"/>
       <argument type="service" id="security.token_storage" on-invalid="null"/>
+      <call method="registerListener">
+        <argument>main</argument>
+        <argument>app_logout</argument>
+        <argument>logout</argument>
+        <argument>_csrf_token</argument>
+        <argument>null</argument>
+        <argument>null</argument>
+      </call>
     </service>
     <service id="security.route_loader.logout" class="Symfony\Bundle\SecurityBundle\Routing\LogoutRouteLoader">
       <tag name="routing.route_loader"/>
@@ -6220,12 +6539,20 @@
         </service>
       </argument>
     </service>
-    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap"/>
+    <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap">
+      <call method="add">
+        <argument type="service" id=".security.request_matcher.6_8FQx_"/>
+        <argument type="collection">
+          <argument>ROLE_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+    </service>
     <service id="security.context_listener" class="Symfony\Component\Security\Http\Firewall\ContextListener">
       <tag name="monolog.logger" channel="security"/>
       <argument type="service" id="security.untracked_token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
       </argument>
       <argument type="abstract">Provider Key</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -6351,7 +6678,7 @@
     </service>
     <service id="security.listener.user_provider" class="Symfony\Component\Security\Http\EventListener\UserProviderListener">
       <tag name="kernel.event_listener" event="Symfony\Component\Security\Http\Event\CheckPassportEvent" priority="1024" method="checkPassport"/>
-      <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
     </service>
     <service id="security.listener.user_provider.abstract" class="Symfony\Component\Security\Http\EventListener\UserProviderListener" abstract="true">
       <argument type="abstract">user provider</argument>
@@ -6506,7 +6833,10 @@
       <argument type="service" id=".service_locator.zJyh7qS"/>
       <argument type="service" id=".service_locator._1SGciK"/>
       <argument type="collection">
-        <argument key="main" type="collection"/>
+        <argument key="main" type="collection">
+          <argument type="service" id="App\Security\AppAuthAuthenticator"/>
+          <argument type="service" id="security.authenticator.remember_me.main"/>
+        </argument>
       </argument>
       <argument>false</argument>
       <call method="setName">
@@ -6516,8 +6846,11 @@
         <argument>Display information about your security firewall(s)</argument>
       </call>
     </service>
-    <service id="security.user.provider.concrete.users_in_memory" class="Symfony\Component\Security\Core\User\InMemoryUserProvider">
-      <argument type="collection"/>
+    <service id="security.user.provider.concrete.app_user_provider" class="Symfony\Bridge\Doctrine\Security\User\EntityUserProvider">
+      <argument type="service" id="doctrine"/>
+      <argument>App\Entity\User</argument>
+      <argument>username</argument>
+      <argument>null</argument>
     </service>
     <service id="security.firewall.map.config.dev" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig">
       <argument>dev</argument>
@@ -6554,18 +6887,30 @@
       <argument>null</argument>
       <argument>true</argument>
       <argument>false</argument>
-      <argument>security.user.provider.concrete.users_in_memory</argument>
+      <argument>security.user.provider.concrete.app_user_provider</argument>
       <argument>main</argument>
+      <argument>App\Security\AppAuthAuthenticator</argument>
       <argument>null</argument>
       <argument>null</argument>
+      <argument type="collection">
+        <argument>remember_me</argument>
+        <argument>App\Security\AppAuthAuthenticator</argument>
+      </argument>
       <argument>null</argument>
-      <argument type="collection"/>
-      <argument>null</argument>
-      <argument>null</argument>
+      <argument type="collection">
+        <argument key="path">app_logout</argument>
+        <argument key="enable_csrf">null</argument>
+        <argument key="csrf_token_id">logout</argument>
+        <argument key="csrf_parameter">_csrf_token</argument>
+        <argument key="target">/</argument>
+        <argument key="invalidate_session">true</argument>
+        <argument key="clear_site_data" type="collection"/>
+        <argument key="delete_cookies" type="collection"/>
+      </argument>
     </service>
     <service id="security.listener.main.user_provider" class="Symfony\Component\Security\Http\EventListener\UserProviderListener">
       <tag name="kernel.event_listener" dispatcher="debug.security.event_dispatcher.main" event="Symfony\Component\Security\Http\Event\CheckPassportEvent" priority="2048" method="checkPassport"/>
-      <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
     </service>
     <service id="security.user_checker.chain.main" class="Symfony\Component\Security\Core\User\ChainUserChecker">
       <argument type="tagged_iterator" tag="security.user_checker.main"/>
@@ -6575,7 +6920,7 @@
       <tag name="container.hot_path"/>
       <argument type="service" id="security.untracked_token_storage"/>
       <argument type="iterator">
-        <argument type="service" id="security.user.provider.concrete.users_in_memory"/>
+        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
       </argument>
       <argument>main</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
@@ -6590,9 +6935,138 @@
       <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
       <argument type="service" id="security.authentication.session_strategy"/>
     </service>
+    <service id="security.logout_listener.main" class="Symfony\Component\Security\Http\Firewall\LogoutListener">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.http_utils"/>
+      <argument type="service" id="debug.security.event_dispatcher.main"/>
+      <argument type="collection">
+        <argument key="csrf_parameter">_csrf_token</argument>
+        <argument key="csrf_token_id">logout</argument>
+        <argument key="logout_path">app_logout</argument>
+      </argument>
+    </service>
+    <service id="security.logout.listener.default.main" class="Symfony\Component\Security\Http\EventListener\DefaultLogoutListener">
+      <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
+      <argument type="service" id="security.http_utils"/>
+      <argument>/</argument>
+    </service>
+    <service id="security.logout.listener.session.main" class="Symfony\Component\Security\Http\EventListener\SessionLogoutListener">
+      <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
+    </service>
+    <service id="security.rememberme.response_listener" class="Symfony\Component\Security\Http\RememberMe\ResponseListener">
+      <tag name="kernel.event_subscriber"/>
+      <tag name="container.hot_path"/>
+    </service>
+    <service id="security.authenticator.remember_me_signature_hasher" class="Symfony\Component\Security\Core\Signature\SignatureHasher">
+      <argument type="service" id="property_accessor"/>
+      <argument type="abstract">signature properties</argument>
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>null</argument>
+      <argument>null</argument>
+    </service>
+    <service id="security.authenticator.signature_remember_me_handler" class="Symfony\Component\Security\Http\RememberMe\SignatureRememberMeHandler" abstract="true">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="abstract">signature hasher</argument>
+      <argument type="abstract">user provider</argument>
+      <argument type="service" id="request_stack"/>
+      <argument type="abstract">options</argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.authenticator.persistent_remember_me_handler" class="Symfony\Component\Security\Http\RememberMe\PersistentRememberMeHandler" abstract="true">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="abstract">token provider</argument>
+      <argument type="abstract">user provider</argument>
+      <argument type="service" id="request_stack"/>
+      <argument type="abstract">options</argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+      <argument type="abstract">token verifier</argument>
+    </service>
+    <service id="security.authenticator.firewall_aware_remember_me_handler" class="Symfony\Bundle\SecurityBundle\RememberMe\FirewallAwareRememberMeHandler">
+      <argument type="service" id="security.firewall.map"/>
+      <argument type="service" id=".service_locator.Ar70cHn"/>
+      <argument type="service" id="request_stack"/>
+    </service>
+    <service id="security.listener.check_remember_me_conditions" class="Symfony\Component\Security\Http\EventListener\CheckRememberMeConditionsListener" abstract="true">
+      <argument type="abstract">options</argument>
+      <argument type="service" id="monolog.logger" on-invalid="null"/>
+    </service>
+    <service id="security.listener.remember_me" class="Symfony\Component\Security\Http\EventListener\RememberMeListener" abstract="true">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="abstract">remember me handler</argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.authenticator.remember_me" class="Symfony\Component\Security\Http\Authenticator\RememberMeAuthenticator" abstract="true">
+      <tag name="monolog.logger" channel="security"/>
+      <argument type="abstract">remember me handler</argument>
+      <argument>%env(APP_SECRET)%</argument>
+      <argument type="service" id="security.token_storage"/>
+      <argument type="abstract">options</argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="cache.security_token_verifier" class="Symfony\Component\Cache\Adapter\TraceableAdapter">
+      <tag name="cache.pool"/>
+      <tag name="kernel.reset" method="reset"/>
+      <argument type="service" id="cache.security_token_verifier.recorder_inner"/>
+    </service>
+    <service id="security.authenticator.remember_me_signature_hasher.main" class="Symfony\Component\Security\Core\Signature\SignatureHasher">
+      <argument type="service" id="property_accessor"/>
+      <argument type="collection">
+        <argument>password</argument>
+      </argument>
+      <argument>%env(APP_SECRET)%</argument>
+      <argument>null</argument>
+      <argument>null</argument>
+    </service>
+    <service id="security.authenticator.remember_me_handler.main" class="Symfony\Component\Security\Http\RememberMe\SignatureRememberMeHandler">
+      <tag name="security.remember_me_handler" firewall="main"/>
+      <argument type="service" id="security.authenticator.remember_me_signature_hasher.main"/>
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
+      <argument type="service" id="request_stack"/>
+      <argument type="collection">
+        <argument key="secret">%env(APP_SECRET)%</argument>
+        <argument key="lifetime">604800</argument>
+        <argument key="path">/</argument>
+        <argument key="always_remember_me">true</argument>
+        <argument key="user_providers" type="collection"/>
+        <argument key="catch_exceptions">true</argument>
+        <argument key="signature_properties" type="collection">
+          <argument>password</argument>
+        </argument>
+        <argument key="name">REMEMBERME</argument>
+        <argument key="domain">null</argument>
+        <argument key="secure">false</argument>
+        <argument key="httponly">true</argument>
+        <argument key="samesite">null</argument>
+        <argument key="remember_me_parameter">_remember_me</argument>
+      </argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.listener.check_remember_me_conditions.main" class="Symfony\Component\Security\Http\EventListener\CheckRememberMeConditionsListener">
+      <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
+      <argument type="collection">
+        <argument key="always_remember_me">true</argument>
+        <argument key="remember_me_parameter">_remember_me</argument>
+      </argument>
+      <argument type="service" id="monolog.logger" on-invalid="null"/>
+    </service>
+    <service id="security.listener.remember_me.main" class="Symfony\Component\Security\Http\EventListener\RememberMeListener">
+      <tag name="kernel.event_subscriber" dispatcher="debug.security.event_dispatcher.main"/>
+      <argument type="service" id="security.authenticator.remember_me_handler.main"/>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
+    <service id="security.authenticator.remember_me.main" class="Symfony\Component\Security\Http\Authenticator\RememberMeAuthenticator">
+      <argument type="service" id="security.authenticator.remember_me_handler.main"/>
+      <argument>%env(APP_SECRET)%</argument>
+      <argument type="service" id="security.token_storage"/>
+      <argument>REMEMBERME</argument>
+      <argument type="service" id="monolog.logger.security" on-invalid="null"/>
+    </service>
     <service id="security.authenticator.manager.main" class="Symfony\Component\Security\Http\Authentication\AuthenticatorManager">
       <tag name="monolog.logger" channel="security"/>
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument type="service" id="App\Security\AppAuthAuthenticator"/>
+        <argument type="service" id="security.authenticator.remember_me.main"/>
+      </argument>
       <argument type="service" id="security.token_storage"/>
       <argument type="service" id="debug.security.event_dispatcher.main"/>
       <argument>main</argument>
@@ -6615,11 +7089,18 @@
       <argument type="service" id="security.authentication.trust_resolver"/>
       <argument type="service" id="security.http_utils"/>
       <argument>main</argument>
-      <argument>null</argument>
+      <argument type="service" id="App\Security\AppAuthAuthenticator"/>
       <argument>null</argument>
       <argument>null</argument>
       <argument type="service" id="monolog.logger.security" on-invalid="null"/>
       <argument>false</argument>
+    </service>
+    <service id=".service_locator.4uvIF6K" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="App\Security\AppAuthAuthenticator" type="service_closure" id="App\Security\AppAuthAuthenticator"/>
+        <argument key="security.authenticator.remember_me.main" type="service_closure" id="security.authenticator.remember_me.main"/>
+      </argument>
     </service>
     <service id="security.firewall.map.context.main" class="Symfony\Bundle\SecurityBundle\Security\LazyFirewallContext">
       <argument type="iterator">
@@ -6629,7 +7110,7 @@
         <argument type="service" id="security.access_listener"/>
       </argument>
       <argument type="service" id="security.exception_listener.main"/>
-      <argument>null</argument>
+      <argument type="service" id="security.logout_listener.main"/>
       <argument type="service" id="security.firewall.map.config.main"/>
       <argument type="service" id="security.untracked_token_storage"/>
     </service>
@@ -6638,6 +7119,14 @@
       <argument type="collection">
         <argument key="security.firewall.map.context.dev" type="service_closure" id="security.firewall.map.context.dev"/>
         <argument key="security.firewall.map.context.main" type="service_closure" id="security.firewall.map.context.main"/>
+      </argument>
+    </service>
+    <service id=".security.request_matcher.J6VGRO9" class="Symfony\Component\HttpFoundation\RequestMatcher\PathRequestMatcher">
+      <argument>^/dashboard</argument>
+    </service>
+    <service id=".security.request_matcher.6_8FQx_" class="Symfony\Component\HttpFoundation\ChainRequestMatcher">
+      <argument type="collection">
+        <argument type="service" id=".security.request_matcher.J6VGRO9"/>
       </argument>
     </service>
     <service id="security.command.user_password_hash" class="Symfony\Component\PasswordHasher\Command\UserPasswordHashCommand">
@@ -6740,6 +7229,10 @@
           <argument type="collection">
             <argument>App\Entity</argument>
             <argument type="service" id="doctrine.orm.default_attribute_metadata_driver"/>
+          </argument>
+          <argument type="collection">
+            <argument>Vich\UploaderBundle\Entity</argument>
+            <argument type="service" id="doctrine.orm.default_xml_metadata_driver"/>
           </argument>
         </argument>
       </argument>
@@ -6896,6 +7389,759 @@
       <argument type="service" id="maker.security_config_updater"/>
       <argument type="service" id="maker.security_controller_builder"/>
     </service>
+    <service id="Vich\UploaderBundle\Naming\SmartUniqueNamer.product_images" class="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true">
+      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
+    </service>
+    <service id="vich_uploader.adapter.mongodb" class="Vich\UploaderBundle\Adapter\ODM\MongoDB\MongoDBAdapter"/>
+    <service id="vich_uploader.adapter.orm" class="Vich\UploaderBundle\Adapter\ORM\DoctrineORMAdapter"/>
+    <service id="vich_uploader.adapter.phpcr" class="Vich\UploaderBundle\Adapter\PHPCR\PHPCRAdapter"/>
+    <service id="vich_uploader.listener.doctrine.base" abstract="true">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.inject.orm" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.orm" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.orm" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.orm" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.inject.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.mongodb" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.inject.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\InjectListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.clean.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.phpcr" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener">
+      <argument></argument>
+      <argument></argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.storage.file_system" class="Vich\UploaderBundle\Storage\FileSystemStorage">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+    </service>
+    <service id="vich_uploader.file_injector" class="Vich\UploaderBundle\Injector\FileInjector">
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="vich_uploader.metadata.file_locator" class="Metadata\Driver\FileLocator">
+      <argument type="collection"/>
+    </service>
+    <service id="vich_uploader.metadata.attribute_reader" class="Vich\UploaderBundle\Metadata\Driver\AttributeReader"/>
+    <service id="vich_uploader.metadata_driver.annotation" class="Vich\UploaderBundle\Metadata\Driver\AnnotationDriver">
+      <argument type="service" id="vich_uploader.metadata.reader"/>
+      <argument type="collection">
+        <argument type="service" id="doctrine"/>
+      </argument>
+    </service>
+    <service id="vich_uploader.metadata_driver.xml" class="Vich\UploaderBundle\Metadata\Driver\XmlDriver">
+      <argument type="service" id="vich_uploader.metadata.file_locator"/>
+    </service>
+    <service id="vich_uploader.metadata_driver.yml" class="Vich\UploaderBundle\Metadata\Driver\YmlDriver">
+      <argument type="service" id="vich_uploader.metadata.file_locator"/>
+    </service>
+    <service id="vich_uploader.metadata_driver.yaml" class="Vich\UploaderBundle\Metadata\Driver\YamlDriver">
+      <argument type="service" id="vich_uploader.metadata.file_locator"/>
+    </service>
+    <service id="vich_uploader.metadata_driver.chain" class="Metadata\Driver\DriverChain">
+      <argument type="collection">
+        <argument type="service" id="vich_uploader.metadata_driver.xml"/>
+        <argument type="service">
+          <service class="Vich\UploaderBundle\Metadata\Driver\AnnotationDriver">
+            <argument type="service" id="vich_uploader.metadata.reader"/>
+            <argument type="collection">
+              <argument type="service" id="doctrine"/>
+            </argument>
+          </service>
+        </argument>
+        <argument type="service" id="vich_uploader.metadata_driver.yaml"/>
+        <argument type="service" id="vich_uploader.metadata_driver.yml"/>
+      </argument>
+    </service>
+    <service id="vich_uploader.metadata.cache.file_cache" class="Metadata\Cache\FileCache">
+      <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\var\cache\dev/vich_uploader</argument>
+    </service>
+    <service id="vich_uploader.metadata_factory" class="Metadata\MetadataFactory">
+      <argument type="service" id="vich_uploader.metadata_driver.chain"/>
+      <argument>Metadata\ClassHierarchyMetadata</argument>
+      <argument>true</argument>
+      <call method="setCache">
+        <argument type="service" id="vich_uploader.metadata.cache.file_cache" on-invalid="ignore"/>
+      </call>
+    </service>
+    <service id="vich_uploader.metadata_reader" class="Vich\UploaderBundle\Metadata\MetadataReader">
+      <argument type="service" id="vich_uploader.metadata_factory"/>
+    </service>
+    <service id="Vich\UploaderBundle\Metadata\CacheWarmer" class="Vich\UploaderBundle\Metadata\CacheWarmer">
+      <tag name="kernel.cache_warmer"/>
+      <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\var\cache\dev/vich_uploader</argument>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+    </service>
+    <service id="vich_uploader.property_mapping_resolver" class="Vich\UploaderBundle\Mapping\PropertyMappingResolver">
+      <argument type="service" id="service_container"/>
+      <argument>%vich_uploader.mappings%</argument>
+      <argument>_name</argument>
+    </service>
+    <service id="vich_uploader.property_mapping_factory" class="Vich\UploaderBundle\Mapping\PropertyMappingFactory">
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.property_mapping_resolver"/>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\UniqidNamer" class="Vich\UploaderBundle\Naming\UniqidNamer" public="true"/>
+    <service id="Vich\UploaderBundle\Naming\PropertyNamer" class="Vich\UploaderBundle\Naming\PropertyNamer" public="true">
+      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\OrignameNamer" class="Vich\UploaderBundle\Naming\OrignameNamer" public="true">
+      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\HashNamer" class="Vich\UploaderBundle\Naming\HashNamer" public="true"/>
+    <service id="Vich\UploaderBundle\Naming\Base64Namer" class="Vich\UploaderBundle\Naming\Base64Namer" public="true"/>
+    <service id="Vich\UploaderBundle\Naming\SubdirDirectoryNamer" class="Vich\UploaderBundle\Naming\SubdirDirectoryNamer" public="true"/>
+    <service id="Vich\UploaderBundle\Naming\PropertyDirectoryNamer" class="Vich\UploaderBundle\Naming\PropertyDirectoryNamer" public="true">
+      <argument type="service" id="property_accessor" on-invalid="null"/>
+      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\CurrentDateTimeDirectoryNamer" class="Vich\UploaderBundle\Naming\CurrentDateTimeDirectoryNamer" public="true">
+      <argument type="service" id="property_accessor" on-invalid="null"/>
+    </service>
+    <service id="Vich\UploaderBundle\Naming\SmartUniqueNamer" class="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true">
+      <argument type="service" id="Vich\UploaderBundle\Util\Transliterator"/>
+    </service>
+    <service id="Vich\UploaderBundle\Util\Transliterator" class="Vich\UploaderBundle\Util\Transliterator">
+      <argument type="service" id="slugger"/>
+    </service>
+    <service id="vich_uploader.download_handler" class="Vich\UploaderBundle\Handler\DownloadHandler" public="true">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="vich_uploader.upload_handler" class="Vich\UploaderBundle\Handler\UploadHandler" public="true">
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.file_injector"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+    </service>
+    <service id="vich_uploader.command.mapping_debug_class" class="Vich\UploaderBundle\Command\MappingDebugClassCommand">
+      <tag name="console.command" command="vich:mapping:debug-class"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <call method="setName">
+        <argument>vich:mapping:debug-class</argument>
+      </call>
+    </service>
+    <service id="vich_uploader.command.mapping_debug" class="Vich\UploaderBundle\Command\MappingDebugCommand">
+      <tag name="console.command" command="vich:mapping:debug"/>
+      <tag name="container.no_preload"/>
+      <argument>%vich_uploader.mappings%</argument>
+      <call method="setName">
+        <argument>vich:mapping:debug</argument>
+      </call>
+    </service>
+    <service id="vich_uploader.command.mapping_list_classes" class="Vich\UploaderBundle\Command\MappingListClassesCommand">
+      <tag name="console.command" command="vich:mapping:list-classes"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <call method="setName">
+        <argument>vich:mapping:list-classes</argument>
+      </call>
+    </service>
+    <service id="Vich\UploaderBundle\DataCollector\MappingCollector" class="Vich\UploaderBundle\DataCollector\MappingCollector">
+      <tag name="data_collector" template="@VichUploader/Collector/mapping_collector.html.twig" id="vich_uploader.mapping_collector"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+    </service>
+    <service id="vich_uploader.form.type.file" class="Vich\UploaderBundle\Form\Type\VichFileType" public="true">
+      <tag name="form.type" alias="vich_file"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="property_accessor"/>
+    </service>
+    <service id="vich_uploader.form.type.image" class="Vich\UploaderBundle\Form\Type\VichImageType" public="true">
+      <tag name="form.type" alias="vich_image"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+      <argument type="service" id="vich_uploader.property_mapping_factory"/>
+      <argument type="service" id="property_accessor"/>
+      <argument type="service" id="liip_imagine.cache.manager" on-invalid="null"/>
+    </service>
+    <service id="Vich\UploaderBundle\Templating\Helper\UploaderHelper" class="Vich\UploaderBundle\Templating\Helper\UploaderHelper">
+      <tag name="templating.helper" alias="vich_uploader"/>
+      <argument type="service" id="vich_uploader.storage.file_system"/>
+    </service>
+    <service id="Vich\UploaderBundle\Twig\Extension\UploaderExtension" class="Vich\UploaderBundle\Twig\Extension\UploaderExtension">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="Vich\UploaderBundle\Twig\Extension\UploaderExtensionRuntime" class="Vich\UploaderBundle\Twig\Extension\UploaderExtensionRuntime">
+      <tag name="twig.runtime"/>
+      <argument type="service" id="Vich\UploaderBundle\Templating\Helper\UploaderHelper"/>
+    </service>
+    <service id="vich_uploader.metadata.reader" class="Vich\UploaderBundle\Metadata\Driver\AttributeReader"/>
+    <service id="vich_uploader.listener.clean.product_images" class="Vich\UploaderBundle\EventListener\Doctrine\CleanListener">
+      <tag name="doctrine.event_listener" event="preUpdate" priority="50"/>
+      <argument>product_images</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.remove.product_images" class="Vich\UploaderBundle\EventListener\Doctrine\RemoveListener">
+      <tag name="doctrine.event_listener" event="preRemove" priority="0"/>
+      <tag name="doctrine.event_listener" event="postFlush" priority="0"/>
+      <argument>product_images</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="vich_uploader.listener.upload.product_images" class="Vich\UploaderBundle\EventListener\Doctrine\UploadListener">
+      <tag name="doctrine.event_listener" event="prePersist" priority="0"/>
+      <tag name="doctrine.event_listener" event="preUpdate" priority="0"/>
+      <argument>product_images</argument>
+      <argument type="service" id="vich_uploader.adapter.orm"/>
+      <argument type="service" id="vich_uploader.metadata_reader"/>
+      <argument type="service" id="vich_uploader.upload_handler"/>
+    </service>
+    <service id="liip_imagine.mime_types" class="Symfony\Component\Mime\MimeTypes" constructor="getDefault"/>
+    <service id="liip_imagine.cache.resolver.default" class="Liip\ImagineBundle\Imagine\Cache\Resolver\WebPathResolver" public="true">
+      <tag name="liip_imagine.cache.resolver" resolver="default"/>
+      <argument type="service" id="filesystem"/>
+      <argument type="service" id="router.request_context"/>
+      <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage/public</argument>
+      <argument>media/cache</argument>
+    </service>
+    <service id="liip_imagine.binary.loader.default" class="Liip\ImagineBundle\Binary\Loader\FileSystemLoader" public="true">
+      <tag name="liip_imagine.binary.loader" loader="default"/>
+      <argument type="service">
+        <service class="Symfony\Component\Mime\MimeTypes" constructor="getDefault"/>
+      </argument>
+      <argument type="service">
+        <service class="Symfony\Component\Mime\MimeTypes" constructor="getDefault"/>
+      </argument>
+      <argument type="service">
+        <service class="Liip\ImagineBundle\Binary\Locator\FileSystemLocator">
+          <argument type="collection">
+            <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage/public</argument>
+          </argument>
+          <argument>false</argument>
+        </service>
+      </argument>
+    </service>
+    <service id="liip_imagine.factory.config.filter.argument.point" class="Liip\ImagineBundle\Factory\Config\Filter\Argument\PointFactory"/>
+    <service id="liip_imagine.factory.config.filter.argument.size" class="Liip\ImagineBundle\Factory\Config\Filter\Argument\SizeFactory"/>
+    <service id="liip_imagine.factory.config.stack" class="Liip\ImagineBundle\Factory\Config\StackFactory"/>
+    <service id="liip_imagine.factory.config.filter.auto_rotate" class="Liip\ImagineBundle\Factory\Config\Filter\AutoRotateFactory"/>
+    <service id="liip_imagine.factory.config.filter.background" class="Liip\ImagineBundle\Factory\Config\Filter\BackgroundFactory">
+      <argument type="service" id="liip_imagine.factory.config.filter.argument.size"/>
+    </service>
+    <service id="liip_imagine.factory.config.filter.crop" class="Liip\ImagineBundle\Factory\Config\Filter\CropFactory">
+      <argument type="service" id="liip_imagine.factory.config.filter.argument.size"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.argument.point"/>
+    </service>
+    <service id="liip_imagine.factory.config.filter.downscale" class="Liip\ImagineBundle\Factory\Config\Filter\DownscaleFactory">
+      <argument type="service" id="liip_imagine.factory.config.filter.argument.size"/>
+    </service>
+    <service id="liip_imagine.factory.config.filter.flip" class="Liip\ImagineBundle\Factory\Config\Filter\FlipFactory"/>
+    <service id="liip_imagine.factory.config.filter.grayscale" class="Liip\ImagineBundle\Factory\Config\Filter\GrayscaleFactory"/>
+    <service id="liip_imagine.factory.config.filter.interlace" class="Liip\ImagineBundle\Factory\Config\Filter\InterlaceFactory"/>
+    <service id="liip_imagine.factory.config.filter.paste" class="Liip\ImagineBundle\Factory\Config\Filter\PasteFactory">
+      <argument type="service" id="liip_imagine.factory.config.filter.argument.point"/>
+    </service>
+    <service id="liip_imagine.factory.config.filter.relative_resize" class="Liip\ImagineBundle\Factory\Config\Filter\RelativeResizeFactory"/>
+    <service id="liip_imagine.factory.config.filter.resize" class="Liip\ImagineBundle\Factory\Config\Filter\ResizeFactory">
+      <argument type="service" id="liip_imagine.factory.config.filter.argument.size"/>
+    </service>
+    <service id="liip_imagine.factory.config.filter.rotate" class="Liip\ImagineBundle\Factory\Config\Filter\RotateFactory"/>
+    <service id="liip_imagine.factory.config.filter.scale" class="Liip\ImagineBundle\Factory\Config\Filter\ScaleFactory">
+      <argument type="service" id="liip_imagine.factory.config.filter.argument.size"/>
+    </service>
+    <service id="liip_imagine.factory.config.filter.strip" class="Liip\ImagineBundle\Factory\Config\Filter\StripFactory"/>
+    <service id="liip_imagine.factory.config.filter.thumbnail" class="Liip\ImagineBundle\Factory\Config\Filter\ThumbnailFactory">
+      <argument type="service" id="liip_imagine.factory.config.filter.argument.size"/>
+    </service>
+    <service id="liip_imagine.factory.config.filter.upscale" class="Liip\ImagineBundle\Factory\Config\Filter\UpscaleFactory">
+      <argument type="service" id="liip_imagine.factory.config.filter.argument.size"/>
+    </service>
+    <service id="liip_imagine.factory.config.filter.watermark" class="Liip\ImagineBundle\Factory\Config\Filter\WatermarkFactory"/>
+    <service id="liip_imagine.config.filter_factory_collection" class="Liip\ImagineBundle\Config\FilterFactoryCollection">
+      <argument type="service" id="liip_imagine.factory.config.filter.auto_rotate"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.background"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.crop"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.downscale"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.flip"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.grayscale"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.interlace"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.paste"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.relative_resize"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.resize"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.rotate"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.scale"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.strip"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.thumbnail"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.upscale"/>
+      <argument type="service" id="liip_imagine.factory.config.filter.watermark"/>
+    </service>
+    <service id="liip_imagine.config.stack_builder" class="Liip\ImagineBundle\Config\StackBuilder">
+      <argument type="service" id="liip_imagine.factory.config.stack"/>
+      <argument type="service" id="liip_imagine.config.filter_factory_collection"/>
+    </service>
+    <service id="liip_imagine.config.stack_collection" class="Liip\ImagineBundle\Config\StackCollection" public="true">
+      <argument type="service" id="liip_imagine.config.stack_builder"/>
+      <argument>%liip_imagine.filter_sets%</argument>
+    </service>
+    <service id="liip_imagine.filter.manager" class="Liip\ImagineBundle\Imagine\Filter\FilterManager" public="true">
+      <argument type="service" id="liip_imagine.filter.configuration"/>
+      <argument type="service" id="liip_imagine.gd"/>
+      <argument type="service" id="liip_imagine.binary.mime_type_guesser"/>
+      <call method="addLoader">
+        <argument>relative_resize</argument>
+        <argument type="service" id="liip_imagine.filter.loader.relative_resize"/>
+      </call>
+      <call method="addLoader">
+        <argument>resize</argument>
+        <argument type="service" id="liip_imagine.filter.loader.resize"/>
+      </call>
+      <call method="addLoader">
+        <argument>thumbnail</argument>
+        <argument type="service" id="liip_imagine.filter.loader.thumbnail"/>
+      </call>
+      <call method="addLoader">
+        <argument>crop</argument>
+        <argument type="service" id="liip_imagine.filter.loader.crop"/>
+      </call>
+      <call method="addLoader">
+        <argument>grayscale</argument>
+        <argument type="service" id="liip_imagine.filter.loader.grayscale"/>
+      </call>
+      <call method="addLoader">
+        <argument>paste_image</argument>
+        <argument type="service" id="liip_imagine.filter.loader.paste_image"/>
+      </call>
+      <call method="addLoader">
+        <argument>watermark_image</argument>
+        <argument type="service" id="liip_imagine.filter.loader.watermark_image"/>
+      </call>
+      <call method="addLoader">
+        <argument>background</argument>
+        <argument type="service" id="liip_imagine.filter.loader.background"/>
+      </call>
+      <call method="addLoader">
+        <argument>strip</argument>
+        <argument type="service" id="liip_imagine.filter.loader.strip"/>
+      </call>
+      <call method="addLoader">
+        <argument>scale</argument>
+        <argument type="service" id="liip_imagine.filter.loader.scale"/>
+      </call>
+      <call method="addLoader">
+        <argument>upscale</argument>
+        <argument type="service" id="liip_imagine.filter.loader.upscale"/>
+      </call>
+      <call method="addLoader">
+        <argument>downscale</argument>
+        <argument type="service" id="liip_imagine.filter.loader.downscale"/>
+      </call>
+      <call method="addLoader">
+        <argument>auto_rotate</argument>
+        <argument type="service" id="liip_imagine.filter.loader.auto_rotate"/>
+      </call>
+      <call method="addLoader">
+        <argument>rotate</argument>
+        <argument type="service" id="liip_imagine.filter.loader.rotate"/>
+      </call>
+      <call method="addLoader">
+        <argument>flip</argument>
+        <argument type="service" id="liip_imagine.filter.loader.flip"/>
+      </call>
+      <call method="addLoader">
+        <argument>interlace</argument>
+        <argument type="service" id="liip_imagine.filter.loader.interlace"/>
+      </call>
+      <call method="addLoader">
+        <argument>resample</argument>
+        <argument type="service" id="liip_imagine.filter.loader.resample"/>
+      </call>
+      <call method="addLoader">
+        <argument>fixed</argument>
+        <argument type="service" id="liip_imagine.filter.loader.fixed"/>
+      </call>
+      <call method="addPostProcessor">
+        <argument>jpegoptim</argument>
+        <argument type="service" id="liip_imagine.filter.post_processor.jpegoptim"/>
+      </call>
+      <call method="addPostProcessor">
+        <argument>optipng</argument>
+        <argument type="service" id="liip_imagine.filter.post_processor.optipng"/>
+      </call>
+      <call method="addPostProcessor">
+        <argument>pngquant</argument>
+        <argument type="service" id="liip_imagine.filter.post_processor.pngquant"/>
+      </call>
+      <call method="addPostProcessor">
+        <argument>mozjpeg</argument>
+        <argument type="service" id="liip_imagine.filter.post_processor.mozjpeg"/>
+      </call>
+      <call method="addPostProcessor">
+        <argument>cwebp</argument>
+        <argument type="service" id="liip_imagine.filter.post_processor.cwebp"/>
+      </call>
+    </service>
+    <service id="liip_imagine.data.manager" class="Liip\ImagineBundle\Imagine\Data\DataManager" public="true">
+      <argument type="service" id="liip_imagine.binary.mime_type_guesser"/>
+      <argument type="service">
+        <service class="Symfony\Component\Mime\MimeTypes" constructor="getDefault"/>
+      </argument>
+      <argument type="service" id="liip_imagine.filter.configuration"/>
+      <argument>default</argument>
+      <argument>null</argument>
+      <call method="addLoader">
+        <argument>default</argument>
+        <argument type="service" id="liip_imagine.binary.loader.default"/>
+      </call>
+    </service>
+    <service id="liip_imagine.cache.manager" class="Liip\ImagineBundle\Imagine\Cache\CacheManager" public="true">
+      <argument type="service" id="liip_imagine.filter.configuration"/>
+      <argument type="service" id="router.default"/>
+      <argument type="service" id="liip_imagine.cache.signer"/>
+      <argument type="service" id="debug.event_dispatcher"/>
+      <argument>default</argument>
+      <argument>false</argument>
+      <call method="addResolver">
+        <argument>default</argument>
+        <argument type="service" id="liip_imagine.cache.resolver.default"/>
+      </call>
+      <call method="addResolver">
+        <argument>no_cache</argument>
+        <argument type="service" id="liip_imagine.cache.resolver.no_cache_web_path"/>
+      </call>
+    </service>
+    <service id="liip_imagine.filter.configuration" class="Liip\ImagineBundle\Imagine\Filter\FilterConfiguration">
+      <argument>%liip_imagine.filter_sets%</argument>
+    </service>
+    <service id="liip_imagine.service.filter" class="Liip\ImagineBundle\Service\FilterService">
+      <argument type="service" id="liip_imagine.data.manager"/>
+      <argument type="service" id="liip_imagine.filter.manager"/>
+      <argument type="service" id="liip_imagine.cache.manager"/>
+      <argument>false</argument>
+      <argument>%liip_imagine.webp.options%</argument>
+      <argument type="service" id="monolog.logger" on-invalid="ignore"/>
+    </service>
+    <service id="liip_imagine.controller.config" class="Liip\ImagineBundle\Config\Controller\ControllerConfig">
+      <argument>302</argument>
+    </service>
+    <service id="Liip\ImagineBundle\Controller\ImagineController" class="Liip\ImagineBundle\Controller\ImagineController" public="true">
+      <argument type="service" id="liip_imagine.service.filter"/>
+      <argument type="service" id="liip_imagine.data.manager"/>
+      <argument type="service" id="liip_imagine.cache.signer"/>
+      <argument type="service" id="liip_imagine.controller.config"/>
+    </service>
+    <service id="liip_imagine.meta_data.reader" class="Imagine\Image\Metadata\ExifMetadataReader"/>
+    <service id="liip_imagine.gd" class="Imagine\Gd\Imagine">
+      <call method="setMetadataReader">
+        <argument type="service" id="liip_imagine.meta_data.reader"/>
+      </call>
+    </service>
+    <service id="liip_imagine.imagick" class="Imagine\Imagick\Imagine">
+      <call method="setMetadataReader">
+        <argument type="service" id="liip_imagine.meta_data.reader"/>
+      </call>
+    </service>
+    <service id="liip_imagine.gmagick" class="Imagine\Gmagick\Imagine">
+      <call method="setMetadataReader">
+        <argument type="service" id="liip_imagine.meta_data.reader"/>
+      </call>
+    </service>
+    <service id="liip_imagine.filter.loader.relative_resize" class="Liip\ImagineBundle\Imagine\Filter\Loader\RelativeResizeFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="relative_resize"/>
+    </service>
+    <service id="liip_imagine.filter.loader.resize" class="Liip\ImagineBundle\Imagine\Filter\Loader\ResizeFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="resize"/>
+    </service>
+    <service id="liip_imagine.filter.loader.thumbnail" class="Liip\ImagineBundle\Imagine\Filter\Loader\ThumbnailFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="thumbnail"/>
+    </service>
+    <service id="liip_imagine.filter.loader.crop" class="Liip\ImagineBundle\Imagine\Filter\Loader\CropFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="crop"/>
+    </service>
+    <service id="liip_imagine.filter.loader.grayscale" class="Liip\ImagineBundle\Imagine\Filter\Loader\GrayscaleFilterLoader" public="true">
+      <tag name="liip_imagine.filter.loader" loader="grayscale"/>
+    </service>
+    <service id="liip_imagine.filter.loader.paste_image" class="Liip\ImagineBundle\Imagine\Filter\Loader\PasteFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="paste_image"/>
+      <argument type="service" id="liip_imagine.gd"/>
+      <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage</argument>
+    </service>
+    <service id="liip_imagine.filter.loader.watermark_image" class="Liip\ImagineBundle\Imagine\Filter\Loader\WatermarkFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="watermark_image"/>
+      <argument type="service" id="liip_imagine.gd"/>
+      <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage</argument>
+    </service>
+    <service id="liip_imagine.filter.loader.background" class="Liip\ImagineBundle\Imagine\Filter\Loader\BackgroundFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="background"/>
+      <argument type="service" id="liip_imagine.gd"/>
+    </service>
+    <service id="liip_imagine.filter.loader.strip" class="Liip\ImagineBundle\Imagine\Filter\Loader\StripFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="strip"/>
+    </service>
+    <service id="liip_imagine.filter.loader.scale" class="Liip\ImagineBundle\Imagine\Filter\Loader\ScaleFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="scale"/>
+    </service>
+    <service id="liip_imagine.filter.loader.upscale" class="Liip\ImagineBundle\Imagine\Filter\Loader\UpscaleFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="upscale"/>
+    </service>
+    <service id="liip_imagine.filter.loader.downscale" class="Liip\ImagineBundle\Imagine\Filter\Loader\DownscaleFilterLoader" public="true">
+      <tag name="liip_imagine.filter.loader" loader="downscale"/>
+    </service>
+    <service id="liip_imagine.filter.loader.auto_rotate" class="Liip\ImagineBundle\Imagine\Filter\Loader\AutoRotateFilterLoader">
+      <tag name="liip_imagine.filter.loader" loader="auto_rotate"/>
+    </service>
+    <service id="liip_imagine.filter.loader.rotate" class="Liip\ImagineBundle\Imagine\Filter\Loader\RotateFilterLoader" public="true">
+      <tag name="liip_imagine.filter.loader" loader="rotate"/>
+    </service>
+    <service id="liip_imagine.filter.loader.flip" class="Liip\ImagineBundle\Imagine\Filter\Loader\FlipFilterLoader" public="true">
+      <tag name="liip_imagine.filter.loader" loader="flip"/>
+    </service>
+    <service id="liip_imagine.filter.loader.interlace" class="Liip\ImagineBundle\Imagine\Filter\Loader\InterlaceFilterLoader" public="true">
+      <tag name="liip_imagine.filter.loader" loader="interlace"/>
+    </service>
+    <service id="liip_imagine.filter.loader.resample" class="Liip\ImagineBundle\Imagine\Filter\Loader\ResampleFilterLoader" public="true">
+      <tag name="liip_imagine.filter.loader" loader="resample"/>
+      <argument type="service" id="liip_imagine.gd"/>
+    </service>
+    <service id="liip_imagine.filter.loader.fixed" class="Liip\ImagineBundle\Imagine\Filter\Loader\FixedFilterLoader" public="true">
+      <tag name="liip_imagine.filter.loader" loader="fixed"/>
+    </service>
+    <service id="liip_imagine.binary.loader.prototype.filesystem" class="Liip\ImagineBundle\Binary\Loader\FileSystemLoader">
+      <argument type="service" id="mime_types"/>
+      <argument type="service" id="mime_types"/>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.binary.loader.prototype.stream" class="Liip\ImagineBundle\Binary\Loader\StreamLoader">
+      <argument></argument>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.binary.loader.prototype.flysystem" class="Liip\ImagineBundle\Binary\Loader\FlysystemLoader" abstract="true">
+      <argument type="service" id="mime_types"/>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.binary.loader.prototype.flysystem2" class="Liip\ImagineBundle\Binary\Loader\FlysystemV2Loader" abstract="true">
+      <argument type="service" id="mime_types"/>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.binary.loader.prototype.chain" class="Liip\ImagineBundle\Binary\Loader\ChainLoader" abstract="true">
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.binary.locator.filesystem" class="Liip\ImagineBundle\Binary\Locator\FileSystemLocator" shared="false">
+      <tag name="liip_imagine.binary.locator" shared=""/>
+      <argument></argument>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.binary.locator.filesystem_insecure" class="Liip\ImagineBundle\Binary\Locator\FileSystemInsecureLocator" shared="false">
+      <tag name="liip_imagine.binary.locator" shared=""/>
+      <argument></argument>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.cache.resolver.prototype.web_path" class="Liip\ImagineBundle\Imagine\Cache\Resolver\WebPathResolver" public="true" abstract="true">
+      <argument type="service" id="filesystem"/>
+      <argument type="service" id="router.request_context"/>
+      <argument></argument>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.cache.resolver.prototype.aws_s3" class="Liip\ImagineBundle\Imagine\Cache\Resolver\AwsS3Resolver" public="true" abstract="true">
+      <argument></argument>
+      <argument></argument>
+      <argument></argument>
+      <argument></argument>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.cache.resolver.prototype.cache" class="Liip\ImagineBundle\Imagine\Cache\Resolver\CacheResolver" public="true" abstract="true">
+      <argument></argument>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.cache.resolver.prototype.flysystem" class="Liip\ImagineBundle\Imagine\Cache\Resolver\FlysystemResolver" public="true" abstract="true">
+      <argument></argument>
+      <argument type="service" id="router.request_context"/>
+      <argument></argument>
+      <argument></argument>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.cache.resolver.prototype.flysystem2" class="Liip\ImagineBundle\Imagine\Cache\Resolver\FlysystemV2Resolver" public="true" abstract="true">
+      <argument></argument>
+      <argument type="service" id="router.request_context"/>
+      <argument></argument>
+      <argument></argument>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.cache.resolver.prototype.proxy" class="Liip\ImagineBundle\Imagine\Cache\Resolver\ProxyResolver" public="true" abstract="true">
+      <argument></argument>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.cache.resolver.prototype.psr_cache" class="Liip\ImagineBundle\Imagine\Cache\Resolver\PsrCacheResolver" public="true" abstract="true">
+      <argument></argument>
+      <argument></argument>
+    </service>
+    <service id="liip_imagine.cache.resolver.no_cache_web_path" class="Liip\ImagineBundle\Imagine\Cache\Resolver\NoCacheWebPathResolver" public="true">
+      <tag name="liip_imagine.cache.resolver" resolver="no_cache"/>
+      <argument type="service" id="router.request_context"/>
+    </service>
+    <service id="liip_imagine.form.type.image" class="Liip\ImagineBundle\Form\Type\ImageType">
+      <tag name="form.type" alias="liip_imagine_image"/>
+    </service>
+    <service id="liip_imagine.binary.mime_type_guesser" class="Liip\ImagineBundle\Binary\SimpleMimeTypeGuesser">
+      <argument type="service">
+        <service class="Symfony\Component\Mime\MimeTypes" constructor="getDefault"/>
+      </argument>
+    </service>
+    <service id="liip_imagine.cache.signer" class="Liip\ImagineBundle\Imagine\Cache\Signer" public="true">
+      <argument>%env(APP_SECRET)%</argument>
+    </service>
+    <service id="liip_imagine.filter.post_processor.jpegoptim" class="Liip\ImagineBundle\Imagine\Filter\PostProcessor\JpegOptimPostProcessor">
+      <tag name="liip_imagine.filter.post_processor" post_processor="jpegoptim"/>
+      <argument>/usr/bin/jpegoptim</argument>
+      <argument>true</argument>
+      <argument>null</argument>
+      <argument>true</argument>
+      <argument>null</argument>
+    </service>
+    <service id="liip_imagine.filter.post_processor.optipng" class="Liip\ImagineBundle\Imagine\Filter\PostProcessor\OptiPngPostProcessor">
+      <tag name="liip_imagine.filter.post_processor" post_processor="optipng"/>
+      <argument>/usr/bin/optipng</argument>
+      <argument>7</argument>
+      <argument>true</argument>
+      <argument>null</argument>
+    </service>
+    <service id="liip_imagine.filter.post_processor.pngquant" class="Liip\ImagineBundle\Imagine\Filter\PostProcessor\PngquantPostProcessor">
+      <tag name="liip_imagine.filter.post_processor" post_processor="pngquant"/>
+      <argument>/usr/bin/pngquant</argument>
+    </service>
+    <service id="liip_imagine.filter.post_processor.mozjpeg" class="Liip\ImagineBundle\Imagine\Filter\PostProcessor\MozJpegPostProcessor">
+      <tag name="liip_imagine.filter.post_processor" post_processor="mozjpeg"/>
+      <argument>/opt/mozjpeg/bin/cjpeg</argument>
+    </service>
+    <service id="liip_imagine.filter.post_processor.cwebp" class="Liip\ImagineBundle\Imagine\Filter\PostProcessor\CwebpPostProcessor">
+      <tag name="liip_imagine.filter.post_processor" post_processor="cwebp"/>
+      <argument>/usr/bin/cwebp</argument>
+      <argument>null</argument>
+      <argument>75</argument>
+      <argument>100</argument>
+      <argument>4</argument>
+      <argument>fast</argument>
+      <argument>1</argument>
+      <argument>false</argument>
+      <argument>%liip_imagine.cwebp.metadata%</argument>
+    </service>
+    <service id="liip_imagine.templating.filter_extension" class="Liip\ImagineBundle\Templating\FilterExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="liip_imagine.cache.manager"/>
+    </service>
+    <service id="liip_imagine.command.cache_remove" class="Liip\ImagineBundle\Command\RemoveCacheCommand">
+      <tag name="console.command" command="liip:imagine:cache:remove" alias="imagine:del"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="liip_imagine.cache.manager"/>
+      <argument type="service" id="liip_imagine.filter.manager"/>
+      <argument type="service" id="liip_imagine.service.filter"/>
+      <call method="setName">
+        <argument>liip:imagine:cache:remove</argument>
+      </call>
+    </service>
+    <service id="liip_imagine.command.cache_resolve" class="Liip\ImagineBundle\Command\ResolveCacheCommand">
+      <tag name="console.command" command="liip:imagine:cache:resolve" alias="imagine:get"/>
+      <tag name="container.no_preload"/>
+      <argument type="service" id="liip_imagine.cache.manager"/>
+      <argument type="service" id="liip_imagine.filter.manager"/>
+      <argument type="service" id="liip_imagine.service.filter"/>
+      <call method="setName">
+        <argument>liip:imagine:cache:resolve</argument>
+      </call>
+    </service>
+    <service id="liip_imagine.templating.filter_helper" class="Liip\ImagineBundle\Templating\Helper\FilterHelper">
+      <tag name="templating.helper" alias="imagine"/>
+      <argument type="service" id="liip_imagine.cache.manager"/>
+      <deprecated package="liip/imagine-bundle" version="2.2">The "%service_id%" service is deprecated since LiipImagineBundle 2.2 and will be removed in 3.0.</deprecated>
+    </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\DashboardController" class="App\Controller\DashboardController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\DashboardController" class="App\Controller\DashboardController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\DashboardController" class="App\Controller\DashboardController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\RegistrationController" class="App\Controller\RegistrationController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\SecurityController" class="App\Controller\SecurityController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\TemoignageController" class="App\Controller\TemoignageController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\TemoignageController" class="App\Controller\TemoignageController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\TemoignageController" class="App\Controller\TemoignageController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\TestController" class="App\Controller\TestController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\TestController" class="App\Controller\TestController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\TestController" class="App\Controller\TestController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\UserController" class="App\Controller\UserController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\UserController" class="App\Controller\UserController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\VoitureController" class="App\Controller\VoitureController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\VoitureController" class="App\Controller\VoitureController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\VoitureController" class="App\Controller\VoitureController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\TemoignageType" class="App\Form\TemoignageType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\TemoignageType" class="App\Form\TemoignageType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\VoitureCreatingType" class="App\Form\VoitureCreatingType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\VoitureCreatingType" class="App\Form\VoitureCreatingType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\TemoignageRepository" class="App\Repository\TemoignageRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\TemoignageRepository" class="App\Repository\TemoignageRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\UserRepository" class="App\Repository\UserRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\VoitureRepository" class="App\Repository\VoitureRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\VoitureRepository" class="App\Repository\VoitureRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.bJ.4HC5" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -7277,13 +8523,46 @@
         <argument key="loader" type="service_closure" id=".errored..service_locator.y4_Zrx..Symfony\Component\Config\Loader\LoaderInterface"/>
       </argument>
     </service>
-    <service id=".service_locator.L.EDYUC" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.CsMkqUa" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+      </argument>
+    </service>
+    <service id=".service_locator.V6D1oJY" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="entityManager" type="service_closure" id="doctrine.orm.default_entity_manager"/>
+        <argument key="userPasswordHasher" type="service_closure" id="security.user_password_hasher"/>
+      </argument>
+    </service>
+    <service id=".service_locator.rSTd.nA" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
+      </argument>
+    </service>
+    <service id=".service_locator._dhnUph" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="App\Controller\DashboardController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.V6D1oJY"/>
+        <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
+        <argument key="App\Controller\TemoignageController::register" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\TestController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\VoitureController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\VoitureController::register" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
+        <argument key="App\Controller\DashboardController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.V6D1oJY"/>
+        <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
+        <argument key="App\Controller\TemoignageController:register" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\TestController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\VoitureController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\VoitureController:register" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="kernel:loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel:registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
       </argument>
@@ -7445,14 +8724,20 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.Za9MpXe" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.eaZinUH" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
+        <argument key="App\Form\TemoignageType" type="service_closure" id="App\Form\TemoignageType"/>
+        <argument key="App\Form\VoitureCreatingType" type="service_closure" id="App\Form\VoitureCreatingType"/>
+        <argument key="Liip\ImagineBundle\Form\Type\ImageType" type="service_closure" id="liip_imagine.form.type.image"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service_closure" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ColorType" type="service_closure" id="form.type.color"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
+        <argument key="Vich\UploaderBundle\Form\Type\VichFileType" type="service_closure" id="vich_uploader.form.type.file"/>
+        <argument key="Vich\UploaderBundle\Form\Type\VichImageType" type="service_closure" id="vich_uploader.form.type.image"/>
       </argument>
     </service>
     <service id="messenger.bus.default.middleware.traceable" class="Symfony\Component\Messenger\Middleware\TraceableMiddleware">
@@ -7561,7 +8846,7 @@
       <argument type="service" id="http_client.uri_template"/>
       <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>
     </service>
-    <service id=".service_locator.XtmiKbi" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.cBKii5e" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="doctrine.orm.default_listeners.attach_entity_listeners" type="service_closure" id="doctrine.orm.default_listeners.attach_entity_listeners"/>
@@ -7571,11 +8856,18 @@
         <argument key="doctrine.orm.listeners.pdo_session_handler_schema_listener" type="service_closure" id="doctrine.orm.listeners.pdo_session_handler_schema_listener"/>
         <argument key="doctrine.orm.messenger.doctrine_schema_listener" type="service_closure" id="doctrine.orm.messenger.doctrine_schema_listener"/>
         <argument key="turbo.doctrine.event_listener" type="service_closure" id="turbo.doctrine.event_listener"/>
+        <argument key="vich_uploader.listener.clean.product_images" type="service_closure" id="vich_uploader.listener.clean.product_images"/>
+        <argument key="vich_uploader.listener.remove.product_images" type="service_closure" id="vich_uploader.listener.remove.product_images"/>
+        <argument key="vich_uploader.listener.upload.product_images" type="service_closure" id="vich_uploader.listener.upload.product_images"/>
       </argument>
     </service>
-    <service id=".service_locator.Xbsa8iG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.jTEuYBV" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
-      <argument type="collection"/>
+      <argument type="collection">
+        <argument key="App\Repository\TemoignageRepository" type="service_closure" id="App\Repository\TemoignageRepository"/>
+        <argument key="App\Repository\UserRepository" type="service_closure" id="App\Repository\UserRepository"/>
+        <argument key="App\Repository\VoitureRepository" type="service_closure" id="App\Repository\VoitureRepository"/>
+      </argument>
     </service>
     <service id=".service_locator.KLVvNIq" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -7814,6 +9106,62 @@
         <argument>0</argument>
       </call>
       <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LogoutEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.logout.listener.default.main"/>
+          <argument>onLogout</argument>
+        </argument>
+        <argument>64</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LogoutEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.logout.listener.session.main"/>
+          <argument>onLogout</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LoginSuccessEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.listener.check_remember_me_conditions.main"/>
+          <argument>onSuccessfulLogin</argument>
+        </argument>
+        <argument>-32</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LoginSuccessEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.listener.remember_me.main"/>
+          <argument>onSuccessfulLogin</argument>
+        </argument>
+        <argument>-64</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LoginFailureEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.listener.remember_me.main"/>
+          <argument>clearCookie</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\LogoutEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.listener.remember_me.main"/>
+          <argument>clearCookie</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
+        <argument>Symfony\Component\Security\Http\Event\TokenDeauthenticatedEvent</argument>
+        <argument type="collection">
+          <argument type="service_closure" id="security.listener.remember_me.main"/>
+          <argument>clearCookie</argument>
+        </argument>
+        <argument>0</argument>
+      </call>
+      <call method="addListener">
         <argument>Symfony\Component\Security\Http\Event\CheckPassportEvent</argument>
         <argument type="collection">
           <argument type="service_closure" id="security.listener.user_checker.main"/>
@@ -7869,6 +9217,64 @@
         </argument>
         <argument>0</argument>
       </call>
+    </service>
+    <service id=".service_locator.jUv.zyj" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="form.factory" type="service_closure" id="form.factory" on-invalid="ignore"/>
+        <argument key="http_kernel" type="service_closure" id="http_kernel" on-invalid="ignore"/>
+        <argument key="parameter_bag" type="service_closure" id="parameter_bag" on-invalid="ignore"/>
+        <argument key="request_stack" type="service_closure" id="request_stack" on-invalid="ignore"/>
+        <argument key="router" type="service_closure" id="router.default" on-invalid="ignore"/>
+        <argument key="security.authorization_checker" type="service_closure" id="security.authorization_checker" on-invalid="ignore"/>
+        <argument key="security.csrf.token_manager" type="service_closure" id="security.csrf.token_manager" on-invalid="ignore"/>
+        <argument key="security.token_storage" type="service_closure" id="security.token_storage" on-invalid="ignore"/>
+        <argument key="serializer" type="service_closure" id="debug.serializer" on-invalid="ignore"/>
+        <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
+        <argument key="web_link.http_header_serializer" type="service_closure" id="web_link.http_header_serializer" on-invalid="ignore"/>
+      </argument>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\DashboardController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\DashboardController"/>
+      <argument>App\Controller\DashboardController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\RegistrationController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\RegistrationController"/>
+      <argument>App\Controller\RegistrationController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\SecurityController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\SecurityController"/>
+      <argument>App\Controller\SecurityController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\TemoignageController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\TemoignageController"/>
+      <argument>App\Controller\TemoignageController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\TestController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\TestController"/>
+      <argument>App\Controller\TestController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\UserController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\UserController"/>
+      <argument>App\Controller\UserController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
+    </service>
+    <service id=".service_locator.jUv.zyj.App\Controller\VoitureController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\VoitureController"/>
+      <argument>App\Controller\VoitureController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.jUv.zyj" method="withContext"/>
     </service>
     <service id=".service_locator.fuYM_Z." class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
@@ -7943,6 +9349,10 @@
         <argument key="reverse_container" type="service_closure" id="reverse_container" on-invalid="ignore_uninitialized"/>
       </argument>
     </service>
+    <service id=".service_locator.Xbsa8iG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection"/>
+    </service>
     <service id=".service_locator.NBUFN6A" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -8005,6 +9415,12 @@
         <argument key="security.firewall.map" type="service_closure" id="security.firewall.map"/>
         <argument key="security.token_storage" type="service_closure" id="security.token_storage"/>
         <argument key="security.user_checker" type="service_closure" id="security.user_checker"/>
+      </argument>
+    </service>
+    <service id=".service_locator.Ar70cHn" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="main" type="service_closure" id="security.authenticator.remember_me_handler.main"/>
       </argument>
     </service>
     <service id="debug.validator.inner" class="Symfony\Component\Validator\Validator\ValidatorInterface">
@@ -8224,6 +9640,10 @@
       <call method="addDriver">
         <argument type="service" id="doctrine.orm.default_attribute_metadata_driver"/>
         <argument>App\Entity</argument>
+      </call>
+      <call method="addDriver">
+        <argument type="service" id="doctrine.orm.default_xml_metadata_driver"/>
+        <argument>Vich\UploaderBundle\Entity</argument>
       </call>
     </service>
     <service id="debug.security.event_dispatcher.main.inner" class="Symfony\Component\EventDispatcher\EventDispatcher"/>
@@ -8888,7 +10308,7 @@
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
       <tag name="container.no_preload"/>
-      <argument type="service" id=".service_locator.O.CGwuG"/>
+      <argument type="service" id=".service_locator.YaHVsY8"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -8978,6 +10398,11 @@
         <argument key="lint:twig">twig.command.lint</argument>
         <argument key="debug:firewall">security.command.debug_firewall</argument>
         <argument key="security:hash-password">security.command.user_password_hash</argument>
+        <argument key="vich:mapping:debug-class">vich_uploader.command.mapping_debug_class</argument>
+        <argument key="vich:mapping:debug">vich_uploader.command.mapping_debug</argument>
+        <argument key="vich:mapping:list-classes">vich_uploader.command.mapping_list_classes</argument>
+        <argument key="liip:imagine:cache:remove">liip_imagine.command.cache_remove</argument>
+        <argument key="liip:imagine:cache:resolve">liip_imagine.command.cache_resolve</argument>
         <argument key="make:auth">maker.auto_command.make_auth</argument>
         <argument key="make:command">maker.auto_command.make_command</argument>
         <argument key="make:twig-component">maker.auto_command.make_twig_component</argument>
@@ -9007,7 +10432,7 @@
         <argument key="make:security:form-login">maker.auto_command.make_security_form_login</argument>
       </argument>
     </service>
-    <service id=".service_locator.O.CGwuG" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.YaHVsY8" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="Doctrine\DBAL\Tools\Console\Command\RunSqlCommand" type="service_closure" id="Doctrine\DBAL\Tools\Console\Command\RunSqlCommand"/>
@@ -9092,6 +10517,8 @@
         <argument key="doctrine_migrations.up_to_date_command" type="service_closure" id=".doctrine_migrations.up_to_date_command.lazy"/>
         <argument key="doctrine_migrations.version_command" type="service_closure" id=".doctrine_migrations.version_command.lazy"/>
         <argument key="doctrine_migrations.versions_command" type="service_closure" id=".doctrine_migrations.versions_command.lazy"/>
+        <argument key="liip_imagine.command.cache_remove" type="service_closure" id="liip_imagine.command.cache_remove"/>
+        <argument key="liip_imagine.command.cache_resolve" type="service_closure" id="liip_imagine.command.cache_resolve"/>
         <argument key="maker.auto_command.make_auth" type="service_closure" id=".maker.auto_command.make_auth.lazy"/>
         <argument key="maker.auto_command.make_command" type="service_closure" id=".maker.auto_command.make_command.lazy"/>
         <argument key="maker.auto_command.make_controller" type="service_closure" id=".maker.auto_command.make_controller.lazy"/>
@@ -9122,6 +10549,9 @@
         <argument key="twig.command.debug" type="service_closure" id=".twig.command.debug.lazy"/>
         <argument key="twig.command.lint" type="service_closure" id=".twig.command.lint.lazy"/>
         <argument key="var_dumper.command.server_dump" type="service_closure" id=".var_dumper.command.server_dump.lazy"/>
+        <argument key="vich_uploader.command.mapping_debug" type="service_closure" id="vich_uploader.command.mapping_debug"/>
+        <argument key="vich_uploader.command.mapping_debug_class" type="service_closure" id="vich_uploader.command.mapping_debug_class"/>
+        <argument key="vich_uploader.command.mapping_list_classes" type="service_closure" id="vich_uploader.command.mapping_list_classes"/>
       </argument>
     </service>
     <service id="cache.app.recorder_inner" class="Symfony\Component\Cache\Adapter\FilesystemAdapter">
@@ -9208,7 +10638,15 @@
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
-    <service id=".service_locator.MsHkddy" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id="cache.security_token_verifier.recorder_inner" class="Symfony\Component\Cache\Adapter\AdapterInterface">
+      <argument>PUifKv44pw</argument>
+      <argument>0</argument>
+      <argument>%container.build_id%</argument>
+      <argument>C:\Users\hugo-\Documents\dev\Studi\ECF\ECF-Studi_Garage\Garage\var\cache\dev/pools/system</argument>
+      <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
+      <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
+    </service>
+    <service id=".service_locator.ADJDD.l" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="Symfony\Bridge\Twig\Extension\CsrfRuntime" type="service_closure" id="twig.runtime.security_csrf"/>
@@ -9217,6 +10655,7 @@
         <argument key="Symfony\Bridge\Twig\Extension\SerializerRuntime" type="service_closure" id="twig.runtime.serializer"/>
         <argument key="Symfony\Component\Form\FormRenderer" type="service_closure" id="twig.form.renderer"/>
         <argument key="Symfony\UX\StimulusBundle\Twig\UxControllersTwigRuntime" type="service_closure" id="stimulus.ux_controllers_twig_runtime"/>
+        <argument key="Vich\UploaderBundle\Twig\Extension\UploaderExtensionRuntime" type="service_closure" id="Vich\UploaderBundle\Twig\Extension\UploaderExtensionRuntime"/>
       </argument>
     </service>
     <service id="App\Kernel" alias="kernel" public="true"/>
@@ -9344,17 +10783,46 @@
     <service id="Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface" alias="security.user_password_hasher"/>
     <service id="Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface" alias="security.user_authenticator"/>
     <service id="security.firewall" alias="debug.security.firewall"/>
-    <service id="security.user_providers" alias="security.user.provider.concrete.users_in_memory"/>
-    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.users_in_memory"/>
+    <service id="security.user_providers" alias="security.user.provider.concrete.app_user_provider"/>
+    <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.app_user_provider"/>
     <service id="security.authentication.session_strategy.main" alias="security.authentication.session_strategy"/>
+    <service id="Symfony\Component\Security\Http\RememberMe\RememberMeHandlerInterface" alias="security.authenticator.firewall_aware_remember_me_handler"/>
     <service id="security.user_checker.main" alias="security.user_checker"/>
     <service id="security.firewall.context_locator" alias=".service_locator.zJyh7qS"/>
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker"/>
     <service id="logger" alias="monolog.logger"/>
     <service id="Psr\Log\LoggerInterface" alias="monolog.logger"/>
+    <service id="vich_uploader.storage" alias="vich_uploader.storage.file_system"/>
+    <service id="Vich\UploaderBundle\Storage\StorageInterface" alias="vich_uploader.storage.file_system"/>
+    <service id="Vich\UploaderBundle\Storage\FileSystemStorage" alias="vich_uploader.storage.file_system"/>
+    <service id="vich_uploader.metadata_driver" alias="vich_uploader.metadata_driver.chain"/>
+    <service id="vich_uploader.metadata.cache" alias="vich_uploader.metadata.cache.file_cache"/>
+    <service id="Vich\UploaderBundle\Mapping\PropertyMappingResolverInterface" alias="vich_uploader.property_mapping_resolver"/>
+    <service id="Vich\UploaderBundle\Mapping\PropertyMappingFactory" alias="vich_uploader.property_mapping_factory"/>
+    <service id="vich_uploader.namer_uniqid" alias="Vich\UploaderBundle\Naming\UniqidNamer" public="true"/>
+    <service id="vich_uploader.namer_property" alias="Vich\UploaderBundle\Naming\PropertyNamer" public="true"/>
+    <service id="vich_uploader.namer_origname" alias="Vich\UploaderBundle\Naming\OrignameNamer" public="true"/>
+    <service id="vich_uploader.namer_hash" alias="Vich\UploaderBundle\Naming\HashNamer" public="true"/>
+    <service id="vich_uploader.namer_base64" alias="Vich\UploaderBundle\Naming\Base64Namer" public="true"/>
+    <service id="vich_uploader.directory_namer_subdir" alias="Vich\UploaderBundle\Naming\SubdirDirectoryNamer" public="true"/>
+    <service id="vich_uploader.namer_directory_property" alias="Vich\UploaderBundle\Naming\PropertyDirectoryNamer" public="true"/>
+    <service id="vich_uploader.namer_directory_current_date_time" alias="Vich\UploaderBundle\Naming\CurrentDateTimeDirectoryNamer" public="true"/>
+    <service id="vich_uploader.namer_smart_unique" alias="Vich\UploaderBundle\Naming\SmartUniqueNamer" public="true"/>
+    <service id="Vich\UploaderBundle\Handler\DownloadHandler" alias="vich_uploader.download_handler"/>
+    <service id="Vich\UploaderBundle\Handler\UploadHandler" alias="vich_uploader.upload_handler"/>
+    <service id="Vich\UploaderBundle\Form\Type\VichFileType" alias="vich_uploader.form.type.file"/>
+    <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image"/>
+    <service id="Liip\ImagineBundle\Config\FilterFactoryCollection" alias="liip_imagine.config.filter_factory_collection"/>
+    <service id="Liip\ImagineBundle\Config\StackBuilder" alias="liip_imagine.config.stack_builder"/>
+    <service id="Liip\ImagineBundle\Config\StackCollection" alias="liip_imagine.config.stack_collection"/>
+    <service id="liip_imagine.controller" alias="Liip\ImagineBundle\Controller\ImagineController" public="true"/>
+    <service id="liip_imagine" alias="liip_imagine.gd"/>
+    <service id="Liip\ImagineBundle\Imagine\Cache\CacheManager" alias="liip_imagine.cache.manager"/>
+    <service id="Liip\ImagineBundle\Imagine\Data\DataManager" alias="liip_imagine.data.manager"/>
+    <service id="Liip\ImagineBundle\Imagine\Filter\FilterManager" alias="liip_imagine.filter.manager"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.bJ.4HC5" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.L.EDYUC"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator._dhnUph"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
@@ -9375,6 +10843,8 @@
     <service id="Psr\Log\LoggerInterface $debugLogger" alias="monolog.logger.debug"/>
     <service id="Psr\Log\LoggerInterface $securityLogger" alias="monolog.logger.security"/>
     <service id="Psr\Log\LoggerInterface $deprecationLogger" alias="monolog.logger.deprecation"/>
+    <service id="liip_imagine.mime_type_guesser" alias="mime_types"/>
+    <service id="liip_imagine.extension_guesser" alias="mime_types"/>
     <service id=".service_locator.80edgLI" alias="messenger.receiver_locator"/>
     <service id=".service_locator.h8Jkkd2" alias="messenger.retry_strategy_locator"/>
     <service id=".service_locator.BFrsqsn" alias=".service_locator.mAgPHiR"/>
@@ -9397,5 +10867,9 @@
     <service id="doctrine.orm.default_metadata_driver" alias=".doctrine.orm.default_metadata_driver"/>
     <service id="security.event_dispatcher.main" alias="debug.security.event_dispatcher.main"/>
     <service id=".service_locator.gFlme_s" alias=".service_locator.y4_Zrx."/>
+    <service id=".service_locator.9e2t_lq" alias=".service_locator.CsMkqUa"/>
+    <service id=".service_locator.qnm_CJ1" alias=".service_locator.V6D1oJY"/>
+    <service id=".service_locator.7NIAq8D" alias=".service_locator.rSTd.nA"/>
+    <service id=".service_locator.Q1z.f9O" alias=".service_locator.jUv.zyj"/>
   </services>
 </container>

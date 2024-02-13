@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TestController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>{{ app.user.id }} ✅</h1>
+
+    This friendly message is coming from:
+    <div>
+    if users is defiened:
+        {% if users is defined %}
+        <ul>
+            {% for user in users %}
+                <li>
+                    {{user.prenom}}
+                    {{user.nom}}
+                    <ul>
+                    {% for role in user.roles %}
+                        <li>{{role}}</li>
+                    {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+    <div>
+    if cars is defiened:
+    {% include 'voiture/index.html.twig' %}
+    </div>
+</div>
+{% endblock %}

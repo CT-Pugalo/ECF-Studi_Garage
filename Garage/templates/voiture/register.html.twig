@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <h1>Creation Voiture</h1>
+
+    {{ form_errors(voitureCreating) }}
+
+    {{ form_start(voitureCreating) }}
+        {{ form_row(voitureCreating.nom) }}
+        {{ form_row(voitureCreating.image) }}
+        {{ form_row(voitureCreating.prix) }}
+        {{ form_row(voitureCreating.annee_circulation) }}
+        {{ form_row(voitureCreating.kilometrage) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(voitureCreating) }}
+{% endblock %}
