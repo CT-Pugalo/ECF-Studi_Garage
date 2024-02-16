@@ -23,7 +23,7 @@ class Temoignage
     private ?int $note = null;
 
     #[ORM\ManyToOne(inversedBy: 'temoignages')]
-    private ?user $userid = null;
+    private ?User $userid = null;
 
     public function getId(): ?int
     {

@@ -9,12 +9,14 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ app.user }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/hugo-/Documents/dev/Studi/ECF/ECF-Studi_Garage/Garage/src/Controller/TemoignageController.php'|file_link(0) }}">src/Controller/TemoignageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/hugo-/Documents/dev/Studi/ECF/ECF-Studi_Garage/Garage/templates/temoignage/index.html.twig'|file_link(0) }}">templates/temoignage/index.html.twig</a></code></li>
-    </ul>
+<section>
+    {% for temoignage in temoignages %}
+    <div id= '{{ temoignage.getId() }}'>
+        {{ temoignage.getTitre() }}<br>
+        {{ temoignage.getCommentaire() }}<br>
+        {{ temoignage.getNote() }}/5
+    </div>
+    {% endfor %}
+</section>
 </div>
 {% endblock %}

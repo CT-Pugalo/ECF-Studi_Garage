@@ -20,6 +20,10 @@ class TemoignageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Temoignage::class);
     }
+    public function getAll(): array
+    {
+        return $this->createQueryBuilder('u')->getQuery()->getResult();
+    }
 
 //    /**
 //     * @return Temoignage[] Returns an array of Temoignage objects

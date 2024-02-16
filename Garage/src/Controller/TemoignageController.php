@@ -13,10 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class TemoignageController extends AbstractController
 {
     #[Route('/temoignage', name: 'app_temoignage')]
-    public function index(): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
+        $temoignages = $entityManager->getRepository(Temoignage::class)->getAll();
         return $this->render('temoignage/index.html.twig', [
-            'controller_name' => 'TemoignageController',
+            'temoignages' => $temoignages,
         ]);
     }
     #[Route('/temoignage/create', name: 'app_temoignage_register')]
@@ -31,8 +32,10 @@ class TemoignageController extends AbstractController
             $temoignage->setNote($form->get('note')->getData());
             $temoignage->setUserid($form->get('userid')->getData());
             $temoignage->setTitre($form->get('titre')->getData());
+
             $entityManager->persist($temoignage);
-            $entityManager->flush('app_test');
+            $entityManager->flush();
+            return $this->redirectToRoute('app_temoignage');
         }
 
         return $this->render('temoignage/register.html.twig', [
