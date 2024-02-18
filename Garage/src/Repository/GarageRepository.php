@@ -20,6 +20,16 @@ class GarageRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Garage::class);
     }
+    public function getHorraires(){
+        $res = $this->createQueryBuilder('Garage')
+        ->select('Garage.ouverture_semaine')
+        ->select('Garage.fermeture_semaine')
+        ->select('Garage.ouverture_samedi')
+        ->select('Garage.fermeture_samedi')
+        ->select('Garage.ouverture_dimanche')
+        ->select('Garage.fermeture_dimanche')
+        ->getQuery()->getResult();
+    }
 
 //    /**
 //     * @return Garage[] Returns an array of Garage objects

@@ -13,7 +13,7 @@ class Temoignage
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(nullable: true)]
     private ?string $commentaire = null;
 
     #[ORM\Column(length: 255)]

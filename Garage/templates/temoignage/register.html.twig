@@ -12,7 +12,8 @@
     {{ form_errors(form) }}
     {{ form_start(form) }}
         {{ form_row(form.titre) }}
-        {{ form_row(form.commentaire) }}
+        {{ form_label(form.commentaire) }}<br>
+        {{ form_widget(form.commentaire) }}
         {{ form_row(form.note) }}
         <div hidden>{{ form_row(form.userid) }}</div>
         <button type="submit" class="btn">Register</button>

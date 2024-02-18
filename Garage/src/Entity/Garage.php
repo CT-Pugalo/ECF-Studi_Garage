@@ -32,7 +32,7 @@ class Garage
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $fermeture_semaine = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $fermeture_samedi = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
@@ -137,5 +137,14 @@ class Garage
         $this->fermeture_dimanche = $fermeture_dimanche;
 
         return $this;
+    }
+
+    public function getHorraires(): ?array
+    {
+        return array(
+            $this->getOuvertureSemaine(), $this->getFermetureSemaine(),
+            $this->getOuvertureSamedi(), $this->getFermetureSamedi(),
+            $this->getOuvertureDimanche(), $this->getFermetureDimanche(),
+        );
     }
 }
