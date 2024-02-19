@@ -25,5 +25,15 @@
             </li>
         {% endfor %}
     </ul>
+    {% if services is defined %}
+    <ul>
+        {% for service in services %}
+            <li>
+                <ul>{{service.nom}}</ul>
+                <ul>{{service.description}}</ul>
+            </li>
+        {% endfor %}
+    {% endif %}
+    </ul>
 </div>
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <p>Presentation de nos services:</p>
+    <ul>
+        {% for service in services %}
+            <li>
+            {{service.nom}}
+            {{service.description}}
+            <form method="GET" action="/contact">
+            <input hidden name='flag' value='2'></input>
+            <input hidden name='serviceID' value={{service.getId()}}></input>
+            <input type="submit" value="Plus d'info"></input>
+            </form>
+            <form method="GET" action="/services/update">
+            <input hidden name='flag' value='2'></input>
+            <input hidden name='serviceID' value={{service.getId()}}></input>
+            <input type="submit" value="Modifier"></input>
+            </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -39,6 +39,34 @@ class VoitureController extends AbstractController
             'voitureCreating' => $form->createView(),
         ]);
     }
+    #[Route('/voiture/update', name: 'app_voiture_register')]
+    public function update(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $voiture = new Voiture();
+        if($_GET['carID'] && isset($_GET['carID'])){
+            $voiture=$entityManager->getRepository(Voiture::class)->findOneBy(['id' => $_GET['carID']]);
+        }
+        $form = $this->createForm(VoitureCreatingType::class, $voiture);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+
+            $voiture->setNom($form->get('nom')->getData());
+            $voiture->setPrix($form->get('prix')->getData());
+            $voiture->setKilometrage($form->get('kilometrage')->getData());
+            $voiture->setAnneeCirculation($form->get('annee_circulation')->getData());
+            $voiture->setImage($form->get('image')->getData());
+
+            $entityManager->persist($voiture);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_test');
+        }
+
+
+        return $this->render('voiture/register.html.twig', [
+            'voitureCreating' => $form->createView(),
+        ]);
+    }
 
     #[Route('/voiture', name: 'app_voiture')]
     public function index(EntityManagerInterface $entityManager): Response

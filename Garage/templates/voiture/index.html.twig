@@ -37,15 +37,20 @@
                 <ul>
                     {% for car in cars %}
                         <li name="car" id="car_{{car.getId()}}" km={{car.getKilometrage()}} prix={{car.getPrix()}} annee={{car.getAnneeCirculation()|date('Y')}}>
-                            <form method="GET" action="/contact">
                             {{car.getNom()}}
                             ${{car.getPrix()}}
                             {{car.getAnneeCirculation()|date('d/m/Y')}}
                             {{car.getKilometrage()}}<br>
                             <img src="{{ asset('uploads/images/' ~ car.getNomImage()) }}" alt={{car.getNom()}} width="255px" higth="255px"></img>
+                            <form method="GET" action="/contact">
                             <input hidden name='flag' value='1'></input>
                             <input hidden name='carID' value={{car.getId()}}></input>
                             <input type="submit" value="Plus d'info"></input>
+                            </form>
+                            <form method="GET" action="/voiture/update">
+                            <input hidden name='flag' value='1'></input>
+                            <input hidden name='carID' value={{car.getId()}}></input>
+                            <input type="submit" value="Modifier"></input>
                             </form>
                         </li>
                     {% endfor %}
