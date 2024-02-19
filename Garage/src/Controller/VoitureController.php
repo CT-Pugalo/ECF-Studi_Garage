@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Voiture;
+use App\Entity\Temoignage;
 use App\Form\VoitureCreatingType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -53,7 +54,7 @@ class VoitureController extends AbstractController
         $maxAnnee = $entityManager->getRepository(Voiture::class)->getMaxAnnee();
         $minAnnee = $entityManager->getRepository(Voiture::class)->getMinAnnee();
 
-        return $this->render('test/index.html.twig', [
+        return $this->render('voiture/index.html.twig', [
             'cars' => $cars,
             'max_km' => $maxKm,
             'min_km' => $minKm,

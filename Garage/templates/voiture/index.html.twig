@@ -1,98 +1,102 @@
-
+{% extends 'base.html.twig' %}
 {% block title %}Hello VoitureController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
 
-<div class="example-wrapper">
-{% block voitures %}
-    {% if cars is defined %}
-        <div name="filters">
-        {% if max_km is defined %}{% if min_km is defined %}{% if max_prix is defined %}{% if min_prix is defined %}{% if max_annee is defined %}{% if min_annee is defined %}
-        <input id="kilometre_range" type=range
-        max = {{ max_km }}
-        min = {{ min_km }}
-        value = {{ max_km }}
-        ></input>
-        <input id="prix_range" type=range
-        max = {{ max_prix }}
-        min = {{ min_prix }}
-        value = {{ max_prix }}
-        ></input>
-        <input id="annee_range" type=range
-        max = {{ max_annee }}
-        min = {{ min_annee }}
-        value = {{ max_annee }}
-        ></input>
-        <div id="filter_out">
-        <p>Km: {{min_km}} - <output id="output_km"></ouput></p>
-        <p>Prix: {{min_prix}} - <output id="output_prix"></ouput></p>
-        <p>Annee: {{min_annee}} - <output id="output_annee"></ouput></p>
-        </div>
-        {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
-        </div>
-        <ul>
-            {% for car in cars %}
-                <li name="car" id="car_{{car.getId()}}" km={{car.getKilometrage()}} prix={{car.getPrix()}} annee={{car.getAnneeCirculation()|date('Y')}}>
-                    {{car.getNom()}}
-                    ${{car.getPrix()}}
-                    {{car.getAnneeCirculation()|date('d/m/Y')}}
-                    {{car.getKilometrage()}}<br>
-                    <img src="{{ asset('uploads/images/' ~ car.getNomImage()) }}" alt={{car.getNom()}} width="255px" higth="255px"></img>
-                </li>
-            {% endfor %}
-    {% endif %}
-{% endblock %}
-</div>
-{% block javascripts %}
-<script>
-const voitures = document.getElementsByName("car");
+    <div class="example-wrapper">
+        {% block voitures %}
+            {% if cars is defined %}
+                <div name="filters">
+                {% if max_km is defined %}{% if min_km is defined %}{% if max_prix is defined %}{% if min_prix is defined %}{% if max_annee is defined %}{% if min_annee is defined %}
+                <input id="kilometre_range" type=range
+                max = {{ max_km }}
+                min = {{ min_km }}
+                value = {{ max_km }}
+                ></input>
+                <input id="prix_range" type=range
+                max = {{ max_prix }}
+                min = {{ min_prix }}
+                value = {{ max_prix }}
+                ></input>
+                <input id="annee_range" type=range
+                max = {{ max_annee }}
+                min = {{ min_annee }}
+                value = {{ max_annee }}
+                ></input>
+                <div id="filter_out">
+                <p>Km: {{min_km}} - <output id="output_km"></ouput></p>
+                <p>Prix: {{min_prix}} - <output id="output_prix"></ouput></p>
+                <p>Annee: {{min_annee}} - <output id="output_annee"></ouput></p>
+                </div>
+                {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
+                </div>
+                <ul>
+                    {% for car in cars %}
+                        <li name="car" id="car_{{car.getId()}}" km={{car.getKilometrage()}} prix={{car.getPrix()}} annee={{car.getAnneeCirculation()|date('Y')}}>
+                            <form method="GET" action="/contact">
+                            {{car.getNom()}}
+                            ${{car.getPrix()}}
+                            {{car.getAnneeCirculation()|date('d/m/Y')}}
+                            {{car.getKilometrage()}}<br>
+                            <img src="{{ asset('uploads/images/' ~ car.getNomImage()) }}" alt={{car.getNom()}} width="255px" higth="255px"></img>
+                            <input hidden name='flag' value='1'></input>
+                            <input hidden name='carID' value={{car.getId()}}></input>
+                            <input type="submit" value="Plus d'info"></input>
+                            </form>
+                        </li>
+                    {% endfor %}
+            {% endif %}
+        {% endblock %}
+    </div>
+    {% block FiltreJS %}
+    <script>
+    const voitures = document.getElementsByName("car");
 
-const km_input = document.querySelector("#kilometre_range");
-const prix_input = document.querySelector("#prix_range");
-const annee_input = document.querySelector("#annee_range");
+    const km_input = document.querySelector("#kilometre_range");
+    const prix_input = document.querySelector("#prix_range");
+    const annee_input = document.querySelector("#annee_range");
 
-const value_km = document.querySelector("#output_km");
-value_km.textContent=km_input.value;
-const value_prix = document.querySelector("#output_prix");
-value_prix.textContent=prix_input.value;
-const value_annee = document.querySelector("#output_annee");
-value_annee.textContent=annee_input.value;
+    const value_km = document.querySelector("#output_km");
+    value_km.textContent=km_input.value;
+    const value_prix = document.querySelector("#output_prix");
+    value_prix.textContent=prix_input.value;
+    const value_annee = document.querySelector("#output_annee");
+    value_annee.textContent=annee_input.value;
 
-km_input.addEventListener("input", (event) => {
-    value_km.textContent=event.target.value;
-    voitures.forEach(element => {
-        if(parseInt(element.getAttribute("km")) > event.target.value){
-            element.hidden=true;
-        }else{
-            element.hidden=false;
-        }
+    km_input.addEventListener("input", (event) => {
+        value_km.textContent=event.target.value;
+        voitures.forEach(element => {
+            if(parseInt(element.getAttribute("km")) > event.target.value){
+                element.hidden=true;
+            }else{
+                element.hidden=false;
+            }
+        });
     });
-});
-prix_input.addEventListener("input", (event) => {
-    value_prix.textContent=event.target.value;
-    voitures.forEach(element => {
-        if(parseInt(element.getAttribute("prix")) > event.target.value){
-            element.hidden=true;
-        }else{
-            element.hidden=false;
-        }
+    prix_input.addEventListener("input", (event) => {
+        value_prix.textContent=event.target.value;
+        voitures.forEach(element => {
+            if(parseInt(element.getAttribute("prix")) > event.target.value){
+                element.hidden=true;
+            }else{
+                element.hidden=false;
+            }
+        });
     });
-});
-annee_input.addEventListener("input", (event) => {
-    value_annee.textContent=event.target.value;
-    voitures.forEach(element => {
-        if(parseInt(element.getAttribute("annee")) > event.target.value){
-            element.hidden=true;
-        }else{
-            element.hidden=false;
-        }
+    annee_input.addEventListener("input", (event) => {
+        value_annee.textContent=event.target.value;
+        voitures.forEach(element => {
+            if(parseInt(element.getAttribute("annee")) > event.target.value){
+                element.hidden=true;
+            }else{
+                element.hidden=false;
+            }
+        });
     });
-});
-</script>
-{% endblock %}
-
+    </script>
+    {% endblock %}
 {% endblock %}

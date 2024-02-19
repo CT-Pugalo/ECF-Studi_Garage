@@ -517,6 +517,9 @@
         <argument type="service" id=".service_locator.jUv.zyj.App\Controller\VoitureController"/>
       </call>
     </service>
+    <service id="App\Form\ContactType" class="App\Form\ContactType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\HorraireFormType" class="App\Form\HorraireFormType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -575,7 +578,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.2lrZxqP"/>
+      <argument type="service" id=".service_locator.JV.RJbx"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1484,6 +1487,7 @@
         <argument>Liip\ImagineBundle\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\ContactType</argument>
         <argument>App\Form\HorraireFormType</argument>
         <argument>App\Form\RegistrationFormType</argument>
         <argument>App\Form\TemoignageType</argument>
@@ -3474,7 +3478,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.2lrZxqP"/>
+      <argument type="service" id=".service_locator.JV.RJbx"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -3956,7 +3960,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.W.TyhET"/>
+      <argument type="service" id=".service_locator.bb8SIkv"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -8148,6 +8152,8 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\VoitureController" class="App\Controller\VoitureController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\VoitureController" class="App\Controller\VoitureController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\VoitureController" class="App\Controller\VoitureController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ContactType" class="App\Form\ContactType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\ContactType" class="App\Form\ContactType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\HorraireFormType" class="App\Form\HorraireFormType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\HorraireFormType" class="App\Form\HorraireFormType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\RegistrationFormType" class="App\Form\RegistrationFormType" autowire="true" abstract="true"/>
@@ -8564,12 +8570,13 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.2lrZxqP" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.JV.RJbx" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Controller\DashboardController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
-        <argument key="App\Controller\GarageController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
-        <argument key="App\Controller\GarageController::update" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\GarageController::contact" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\GarageController::horraire" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\GarageController::updateHorraire" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.V6D1oJY"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\TemoignageController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
@@ -8582,8 +8589,9 @@
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="App\Controller\DashboardController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
-        <argument key="App\Controller\GarageController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
-        <argument key="App\Controller\GarageController:update" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\GarageController:contact" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\GarageController:horraire" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\GarageController:updateHorraire" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.V6D1oJY"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
         <argument key="App\Controller\TemoignageController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
@@ -8752,9 +8760,10 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.W.TyhET" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.bb8SIkv" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\ContactType" type="service_closure" id="App\Form\ContactType"/>
         <argument key="App\Form\HorraireFormType" type="service_closure" id="App\Form\HorraireFormType"/>
         <argument key="App\Form\RegistrationFormType" type="service_closure" id="App\Form\RegistrationFormType"/>
         <argument key="App\Form\TemoignageType" type="service_closure" id="App\Form\TemoignageType"/>
@@ -10858,7 +10867,7 @@
     <service id="Liip\ImagineBundle\Imagine\Filter\FilterManager" alias="liip_imagine.filter.manager"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.bJ.4HC5" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.2lrZxqP"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.JV.RJbx"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>

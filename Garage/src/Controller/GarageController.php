@@ -3,17 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\Garage;
+use App\Entity\Voiture;
+use App\Form\ContactType;
 use App\Form\HorraireFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
 class GarageController extends AbstractController
 {
     #[Route('/horraire', name: 'app_horraire')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function horraire(EntityManagerInterface $entityManager): Response
     {
         
         $garage = $entityManager->getRepository(Garage::class)->findOneBy(['id' => '1']);
@@ -25,7 +30,7 @@ class GarageController extends AbstractController
         ]);
     }
     #[Route('/horraire/update', name: 'app_horraire_update')]
-    public function update(EntityManagerInterface $entityManager, Request $request): Response
+    public function updateHorraire(EntityManagerInterface $entityManager, Request $request): Response
     {
         $garage = $entityManager->getRepository(Garage::class)->findOneBy(['id' => '1']);
         $horraires = $garage->getHorraires();
@@ -52,6 +57,51 @@ class GarageController extends AbstractController
         return $this->render('horraire/update.html.twig', [
             'horraire' => $horraires,
             'form' => $form->createView()
+        ]);
+    }
+
+    #[Route('/contact', name: 'app_contact')]
+    public function contact(EntityManagerInterface $entityManager, Request $request){
+
+        $message="";
+        $flag=-1;
+        $carID=-1;
+        $serviceID=-1;
+
+        $car=new Voiture();
+
+        if(isset($_GET['flag']) && $_GET['flag']){
+            $flag=$_GET['flag'];
+        }
+        if(isset($_GET['carID']) && $_GET['carID']){
+            $carID=$_GET['carID'];
+        }
+        if($carID!=-1){
+            $car=$entityManager->getRepository(Voiture::class)->findOneBy(['id'=>$carID]);
+        }
+
+        $garage = $entityManager->getRepository(Garage::class)->findOneBy(['id' => '1']); 
+        $form = $this->createForm(ContactType::class, $garage);
+        $form->handleRequest($request);
+        $transport = Transport::fromDsn('smtp://homeserver:25?encryption=&auth_mode=&verify_peer=0');
+        $mailer = new Mailer($transport);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $email = (new Email())
+                ->to($form->get('contact_mail')->getData())
+                ->from($form->get('mail')->getData())
+                ->subject("Demande d'info")
+                ->text($form->get('message')->getData());
+            $mailer->send($email);
+            return $this->redirectToRoute('app_test');
+        }
+        if($flag == "1" && $car!=null){
+            $message = "J'aimerais plus d'info sur la voiture ".$car->getId()." ".$car->getNom()." anonce a ".$car->getPrix()."E";
+        }
+
+        return $this->render('contact/contact.html.twig',[
+            'form'=>$form->createView(),
+            'message'=>$message,
         ]);
     }
 }
