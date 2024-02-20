@@ -1,0 +1,5 @@
+Utilisateur(@id, username, Nom, Prénom, Roles)
+Témoignage(@id, Titre, Commentaire, #user_id)
+Voiture(@id, Nom, Image, Kilométrage, Année_circulation)
+Garage(@id, Contact_mail, Contact_tel, ouverture_semaine, fermeture_semaine, ouverture_samedi, fermeture_samedi, ouverture_dimanche, fermeture_dimanche)
+Services(@id, Titre, Description, #garage_id)
