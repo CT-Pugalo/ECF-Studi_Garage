@@ -16,7 +16,7 @@ if (!\class_exists(App_KernelDevDebugContainer::class, false)) {
 
 return new \ContainerGK6CyCL\App_KernelDevDebugContainer([
     'container.build_hash' => 'GK6CyCL',
-    'container.build_id' => '43bbf115',
-    'container.build_time' => 1708459080,
+    'container.build_id' => 'b8e000b4',
+    'container.build_time' => 1708463325,
     'container.runtime_mode' => \in_array(\PHP_SAPI, ['cli', 'phpdbg', 'embed'], true) ? 'web=0' : 'web=1',
 ], __DIR__.\DIRECTORY_SEPARATOR.'ContainerGK6CyCL');

@@ -1,10 +1,25 @@
-# fly.toml app configuration file generated for studi-ecf-garage on 2024-02-20T18:03:38+01:00
+# fly.toml app configuration file generated for studi-ecf-garage-restless-forest-9562-wispy-haze-6667-polished-cherry-2477 on 2024-02-20T21:47:27+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'studi-ecf-garage'
+app = 'studi-ecf-garage-restless-forest-9562-wispy-haze-6667-polished-cherry-2477'
 primary_region = 'cdg'
+console_command = 'php /var/www/html/artisan tinker'
+
+[build]
+  [build.args]
+    NODE_VERSION = '18'
+    PHP_VERSION = '8.3'
+
+[env]
+  APP_ENV = 'production'
+  APP_RUNTIME = '\App\FlySymfonyRuntime'
+  LOG_CHANNEL = 'stderr'
+  LOG_LEVEL = 'info'
+  LOG_STDERR_FORMATTER = 'Monolog\Formatter\JsonFormatter'
+  SESSION_DRIVER = 'cookie'
+  SESSION_SECURE_COOKIE = 'true'
 
 [http_service]
   internal_port = 8080
