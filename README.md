@@ -14,7 +14,7 @@ ___
 - [liiip-imagine](https://github.com/liip/LiipImagineBundle)
 
 ```cmd
-symfony new Garage --version="7.0.*" --webapp
+symfony new Garage --webapp
 cd Garage
 composer require vich/uploader-bundle
 composer require liip/imagine-bundle
