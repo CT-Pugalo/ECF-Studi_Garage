@@ -10,50 +10,67 @@
     <div class="example-wrapper">
         {% block voitures %}
             {% if cars is defined %}
-                <div name="filters">
+                <div name="filters" class="input-group mb-3">
                 {% if max_km is defined %}{% if min_km is defined %}{% if max_prix is defined %}{% if min_prix is defined %}{% if max_annee is defined %}{% if min_annee is defined %}
+                
                 <input id="kilometre_range" type=range
-                max = {{ max_km }}
-                min = {{ min_km }}
-                value = {{ max_km }}
+                    max = {{ max_km }}
+                    min = {{ min_km }}
+                    value = {{ max_km }}
                 ></input>
                 <input id="prix_range" type=range
-                max = {{ max_prix }}
-                min = {{ min_prix }}
-                value = {{ max_prix }}
+                    max = {{ max_prix }}
+                    min = {{ min_prix }}
+                    value = {{ max_prix }}
                 ></input>
                 <input id="annee_range" type=range
-                max = {{ max_annee }}
-                min = {{ min_annee }}
-                value = {{ max_annee }}
+                    max = {{ max_annee }}
+                    min = {{ min_annee }}
+                    value = {{ max_annee }}
                 ></input>
                 <div id="filter_out">
-                <p>Km: {{min_km}} - <output id="output_km"></ouput></p>
-                <p>Prix: {{min_prix}} - <output id="output_prix"></ouput></p>
-                <p>Annee: {{min_annee}} - <output id="output_annee"></ouput></p>
+                    <div style="display: inline;">Km: {{min_km}} - <output id="output_km"></ouput></div>
+                    <div style="display: inline;">Prix: {{min_prix}} - <output id="output_prix"></ouput></div>
+                    <div style="display: inline;">Annee: {{min_annee}} - <output id="output_annee"></ouput></div>
                 </div>
-                {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
+            {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
                 </div>
-                <ul>
+                <div class="container row" style="width: 100%;">
                     {% for car in cars %}
-                        <li name="car" id="car_{{car.getId()}}" km={{car.getKilometrage()}} prix={{car.getPrix()}} annee={{car.getAnneeCirculation()|date('Y')}}>
-                            {{car.getNom()}}
-                            ${{car.getPrix()}}
-                            {{car.getAnneeCirculation()|date('d/m/Y')}}
-                            {{car.getKilometrage()}}<br>
-                            <img src="{{ asset('uploads/images/' ~ car.getNomImage()) }}" alt={{car.getNom()}} width="255px" higth="255px"></img>
-                            <form method="GET" action="/contact">
-                            <input hidden name='flag' value='1'></input>
-                            <input hidden name='carID' value={{car.getId()}}></input>
-                            <input type="submit" value="Plus d'info"></input>
-                            </form>
-                            <form method="GET" action="/voiture/update">
-                            <input hidden name='flag' value='1'></input>
-                            <input hidden name='carID' value={{car.getId()}}></input>
-                            <input type="submit" value="Modifier"></input>
-                            </form>
-                        </li>
+                        <div class="card col-sm mr-3" name="car" id="car_{{car.getId()}}" km={{car.getKilometrage()}} prix={{car.getPrix()}} annee={{car.getAnneeCirculation()|date('Y')}} style="width: 15rem">
+                            <h5 class="card-title">{{car.getNom()}}</h5>
+                            <img class="card-img-top" src="{{ asset('uploads/images/' ~ car.getNomImage()) }}" alt={{car.getNom()}}></img>
+                            <p class="card-text">
+                                Prix: ${{car.getPrix()}}<br>
+                                Annee de circulation: {{car.getAnneeCirculation()|date('d/m/Y')}}<br>
+                                Kilometrage: {{car.getKilometrage()}}
+                            </p>
+                            <div class="card-footer text-muted">
+                                <form method="GET" action="/contact">
+                                    <input hidden name='flag' value='1'></input>
+                                    <input hidden name='carID' value={{car.getId()}}></input>
+                                    <input class="btn-sm btn-primary" type="submit" value="Plus d'info"></input>
+                                </form>
+                                {% if is_granted('ROLE_USER') %}
+                                    <form method="GET" action="/voiture/update">
+                                    <input hidden name='flag' value='1'></input>
+                                    <input hidden name='carID' value={{car.getId()}}></input>
+                                    <input class="btn-sm btn-primary" type="submit" value="Modifier"></input>
+                                </form>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <form method="GET" action="/voiture/delete">
+                                    <input hidden name='flag' value='1'></input>
+                                    <input hidden name='carID' value={{car.getId()}}></input>
+                                    <input class="btn-sm btn-primary" type="submit" value="Supprimer"></input>
+                                </form>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
                     {% endfor %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <button class="btn-sm btn-primary" onclick="window.location.href='{{ path('app_voiture_register') }}'">Ajouter</button>
+                    {% endif %}
             {% endif %}
         {% endblock %}
     </div>

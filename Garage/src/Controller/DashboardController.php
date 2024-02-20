@@ -12,13 +12,21 @@ use Symfony\Component\Routing\Annotation\Route;
 class DashboardController extends AbstractController
 {
     #[Route('/dashboard', name: 'app_dashboard')]
-    public function index(EntityManagerInterface $entityManager): Response
+    public function dashboard(EntityManagerInterface $entityManager): Response
     {
         $garage = $entityManager->getRepository(Garage::class)->findOneBy(['id' => '1']); 
         $users = $entityManager->getRepository(User::class)->getAll();
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
             'users' => $users,
+            'services' => $garage->getServices(),
+        ]);
+    }
+    #[Route('/', name: 'app')]
+    public function index(EntityManagerInterface $entityManager): Response
+    {
+        $garage = $entityManager->getRepository(Garage::class)->findOneBy(['id' => '1']); 
+        return $this->render('index.html.twig',[
             'services' => $garage->getServices(),
         ]);
     }

@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(form) }}
+        <div hidden>
+        {{ form_errors(form) }}
+        {{ form_row(form.Nom) }}
+        {{ form_row(form.Description) }}</div>
+        <input type="submit" value="Etes-vous sur?"></input>
+    {{ form_end(form) }}
+{% endblock %}

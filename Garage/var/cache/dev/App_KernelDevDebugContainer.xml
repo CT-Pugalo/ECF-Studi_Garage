@@ -585,7 +585,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.JyLe.pC"/>
+      <argument type="service" id=".service_locator.kDL_RUA"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -3486,7 +3486,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.JyLe.pC"/>
+      <argument type="service" id=".service_locator.kDL_RUA"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -8582,21 +8582,26 @@
         <argument key="authenticationUtils" type="service_closure" id="security.authentication_utils"/>
       </argument>
     </service>
-    <service id=".service_locator.JyLe.pC" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.kDL_RUA" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\DashboardController::dashboard" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\DashboardController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController::ajouterService" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController::contact" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\GarageController::deleteService" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController::horraire" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController::services" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController::updateHorraire" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController::updateService" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\RegistrationController::register" type="service_closure" id=".service_locator.V6D1oJY"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.rSTd.nA"/>
+        <argument key="App\Controller\TemoignageController::delete" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\TemoignageController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\TemoignageController::register" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\TemoignageController::updateService" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\TestController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\VoitureController::delete" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\VoitureController::index" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\VoitureController::register" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\VoitureController::update" type="service_closure" id=".service_locator.CsMkqUa"/>
@@ -8604,18 +8609,23 @@
         <argument key="App\Kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::loadRoutes" type="service_closure" id=".service_locator.y4_Zrx."/>
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.y4_Zrx."/>
+        <argument key="App\Controller\DashboardController:dashboard" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\DashboardController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController:ajouterService" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController:contact" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\GarageController:deleteService" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController:horraire" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController:services" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController:updateHorraire" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\GarageController:updateService" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\RegistrationController:register" type="service_closure" id=".service_locator.V6D1oJY"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.rSTd.nA"/>
+        <argument key="App\Controller\TemoignageController:delete" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\TemoignageController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\TemoignageController:register" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\TemoignageController:updateService" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\TestController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
+        <argument key="App\Controller\VoitureController:delete" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\VoitureController:index" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\VoitureController:register" type="service_closure" id=".service_locator.CsMkqUa"/>
         <argument key="App\Controller\VoitureController:update" type="service_closure" id=".service_locator.CsMkqUa"/>
@@ -10889,7 +10899,7 @@
     <service id="Liip\ImagineBundle\Imagine\Filter\FilterManager" alias="liip_imagine.filter.manager"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.bJ.4HC5" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.JyLe.pC"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.kDL_RUA"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.KLVvNIq"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>

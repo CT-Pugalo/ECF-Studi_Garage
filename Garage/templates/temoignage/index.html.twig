@@ -10,11 +10,23 @@
 
 <div class="example-wrapper">
 <section>
+    <button onclick="window.location.href='{{ path('app_temoignage_register') }}'">Ajouter</button>
     {% for temoignage in temoignages %}
     <div id= '{{ temoignage.getId() }}'>
         {{ temoignage.getTitre() }}<br>
         {{ temoignage.getCommentaire() }}<br>
         {{ temoignage.getNote() }}/5
+        </form>
+            <form method="GET" action="{{ path('app_temoignage_register') }}">
+            <input hidden name='flag' value='1'></input>
+            <input hidden name='carID' value={{temoignage.getId()}}></input>
+            <input type="submit" value="Modifier"></input>
+        </form>
+        <form method="GET" action="{{ path('app_temoignage_delete') }}">
+            <input hidden name='flag' value='3'></input>
+            <input hidden name='temoignageID' value={{temoignage.getId()}}></input>
+            <input type="submit" value="Supprimer"></input>
+        </form>
     </div>
     {% endfor %}
 </section>

@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for ecfstudihugobogdanovic-summer-snow-8091 on 2024-02-20T11:25:28+01:00
+# fly.toml app configuration file generated for studi-ecf-garage on 2024-02-20T18:03:38+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'ecfstudihugobogdanovic-summer-snow-8091'
+app = 'studi-ecf-garage'
 primary_region = 'cdg'
 
 [http_service]
