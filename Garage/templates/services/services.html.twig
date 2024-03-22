@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <p>Presentation de nos services:</p>
-        <div class="container row" style="width: 100%;">
+        <div class="container row text-center" style="width: 100%;">
         {% for service in services %}
-        <div class="card col-sm mr-3" style="width: 18rem;height: 18rem;">
+        <section class="col me-3">
+        <div class="card" style="width: 18rem;height: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{{service.getNom()}}</h5>
                 <p class="card-text">{{service.getDescription()}}</p>
@@ -30,9 +31,12 @@
                 {% endif %}
             </div>
         </div>
+        </section>
         {% endfor %}
         </div>
         {% if is_granted('ROLE_ADMIN') %}
+        <div class="text-center">
             <button class="btn-sm btn-primary" onclick="window.location.href='{{ path('app_service_add') }}'">Ajouter</button>
+        </div>
         {% endif %}
 {% endblock %}

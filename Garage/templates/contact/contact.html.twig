@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+<form class="mb-3">
     {{ form_start(form) }}
+    <div class="mb-3">
         {{ form_errors(form) }}
-        {{ form_row(form.contact_mail) }}
-        {{ form_row(form.mail) }}
-        {{ form_row(form.message) }}
-        {{ form_widget(form) }}
-        <button type="submit" class="btn">Register</button>
+          {{ form_label(form.contact_mail)  }}
+        {{ form_widget(form.contact_mail) }}
+        {{ form_label(form.mail) }}
+        {{ form_widget(form.mail) }}
+        {{ form_label(form.message) }}
+        {{ form_widget(form.message) }}
+        <button type="submit" class="btn btn-primary">Register</button>
     {{ form_end(form) }}
     <div id="message" hidden>{{message}}</div>
     <script>
@@ -14,4 +18,5 @@
         const input_message = document.querySelector("#contact_message");
         input_message.value=message.innerHTML;
     </script>
+</form>
 {% endblock %}

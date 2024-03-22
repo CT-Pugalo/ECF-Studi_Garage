@@ -7,35 +7,38 @@
         .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
     </style>
 
-    <div class="example-wrapper">
+    <div class="">
         {% block voitures %}
             {% if cars is defined %}
-                <div name="filters" class="input-group mb-3">
+                <div name="filters" class="form-control input-group">
                 {% if max_km is defined %}{% if min_km is defined %}{% if max_prix is defined %}{% if min_prix is defined %}{% if max_annee is defined %}{% if min_annee is defined %}
                 
-                <input id="kilometre_range" type=range
+                <input class="form-range sm" id="kilometre_range" type=range
                     max = {{ max_km }}
                     min = {{ min_km }}
                     value = {{ max_km }}
                 ></input>
-                <input id="prix_range" type=range
+                <div style="display: inline;">Km: {{min_km}} - <output id="output_km"></ouput></div>
+                <input class="form-range sm" id="prix_range" type=range
                     max = {{ max_prix }}
                     min = {{ min_prix }}
                     value = {{ max_prix }}
                 ></input>
-                <input id="annee_range" type=range
+                <div style="display: inline;">Prix: {{min_prix}} - <output id="output_prix"></ouput></div>
+                <input class="form-range sm" id="annee_range" type=range
                     max = {{ max_annee }}
                     min = {{ min_annee }}
                     value = {{ max_annee }}
                 ></input>
+                 <div style="display: inline;">Annee: {{min_annee}} - <output id="output_annee"></ouput></div>
                 <div id="filter_out">
-                    <div style="display: inline;">Km: {{min_km}} - <output id="output_km"></ouput></div>
-                    <div style="display: inline;">Prix: {{min_prix}} - <output id="output_prix"></ouput></div>
-                    <div style="display: inline;">Annee: {{min_annee}} - <output id="output_annee"></ouput></div>
+                    
+                    
+                   
                 </div>
-            {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
+                {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
                 </div>
-                <div class="container row" style="width: 100%;">
+                <div class="container row text-center" style="width: 100%;">
                     {% for car in cars %}
                         <div class="card col-sm mr-3" name="car" id="car_{{car.getId()}}" km={{car.getKilometrage()}} prix={{car.getPrix()}} annee={{car.getAnneeCirculation()|date('Y')}} style="width: 15rem">
                             <h5 class="card-title">{{car.getNom()}}</h5>
@@ -68,8 +71,11 @@
                             </div>
                         </div>
                     {% endfor %}
+                    </div>
                     {% if is_granted('ROLE_ADMIN') %}
+                    <div class="text-center">
                         <button class="btn-sm btn-primary" onclick="window.location.href='{{ path('app_voiture_register') }}'">Ajouter</button>
+                    </div>
                     {% endif %}
             {% endif %}
         {% endblock %}

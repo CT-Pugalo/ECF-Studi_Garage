@@ -33,7 +33,7 @@ class VoitureController extends AbstractController
 
             $entityManager->persist($voiture);
             $entityManager->flush();
-            return $this->redirectToRoute('app_test');
+            return $this->redirectToRoute('app_voiture');
         }
 
 
@@ -84,7 +84,7 @@ class VoitureController extends AbstractController
 
             $entityManager->remove($voiture);
             $entityManager->flush();
-            return $this->redirectToRoute('app_test');
+            return $this->redirectToRoute('app_voiture');
             
         }
         return $this->render('voiture/supprimer.html.twig', [

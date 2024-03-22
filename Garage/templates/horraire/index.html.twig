@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HorraireController!{% endblock %}
+{% block title %}Horraires{% endblock %}
 
 {% block body %}
 <style>
@@ -9,15 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/hugo-/Documents/dev/Studi/ECF/ECF-Studi_Garage/Garage/src/Controller/HorraireController.php'|file_link(0) }}">src/Controller/HorraireController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/hugo-/Documents/dev/Studi/ECF/ECF-Studi_Garage/Garage/templates/horraire/index.html.twig'|file_link(0) }}">templates/horraire/index.html.twig</a></code></li>
-    </ul>
-    {% for horraire in horraire %}
-        {{horraire|date('H:i:s') }}
-    {% endfor %}
+    <div>Ouverture semaine: {{horraire[0]|date('H:i')}} - {{horraire[1]|date('H:i')}}</div>
+    <div>Overture samedi: {{horraire[2]|date('H:i')}} - {{horraire[3]|date('H:i')}}</div>
+    <div>Overture dimanche: {{horraire[4]|date('H:i')}} - {{horraire[5]|date('H:i')}}</div>
+    {% if horraire[4] == horraire[5] %}
+      Ferme dimanche
+      {% else %}
+        <div>Overture dimanche: {{horraire[4]|date('H:i')}} - {{horraire[5]|date('H:i')}}</div>
+    {% endif %}
 </div>
 {% endblock %}

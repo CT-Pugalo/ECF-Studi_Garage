@@ -22,3 +22,8 @@ composer require liip/imagine-bundle
 
 Suivre les procédures d'instalation pour [liip](https://symfony.com/bundles/LiipImagineBundle/current/installation.html) et [vich](https://github.com/dustin10/VichUploaderBundle/blob/master/docs/installation.md)
 ___
+## Initialiser la Base de donnee:
+
+### Creation de l'utilisateur:
+Creer l'utilisateur via l'interface avec le lien /register
+

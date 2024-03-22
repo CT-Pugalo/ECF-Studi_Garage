@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
+use App\Entity\Utilisateur;
 use App\Entity\Garage;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,7 +15,7 @@ class DashboardController extends AbstractController
     public function dashboard(EntityManagerInterface $entityManager): Response
     {
         $garage = $entityManager->getRepository(Garage::class)->findOneBy(['id' => '1']); 
-        $users = $entityManager->getRepository(User::class)->getAll();
+        $users = $entityManager->getRepository(Utilisateur::class)->getAll();
         return $this->render('dashboard/index.html.twig', [
             'controller_name' => 'DashboardController',
             'users' => $users,

@@ -1,21 +1,31 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-    <div class="container row" style="width: 50%;">
-        {% for service in services %}
-        <div class="card col-sm mr-3" style="width: 18rem;height: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{service.getNom()}}</h5>
-                <p class="card-text">{{service.getDescription()}}</p>
+    <div class="text-center mb-5">
+    <p>Garage V.PARROT</p>
+    <img class="" src="{{ asset('images/logo.png') }}">
+    </div>
+
+    <div class="container text-center" style="width: 100%;">
+        <div class="row">
+            <div class="card col m-1" >
+            <p class="card-title">Notre garage</p>
+            <p class="card-body">Decouvrez un garage cree pour vous par passion</p>
             </div>
-            <div class="card-footer text-muted">
-                <form method="GET" action="/contact">
-                <input hidden name='flag' value='2'></input>
-                <input hidden name='serviceID' value={{service.getId()}}></input>
-                <input type="submit" value="Plus d'info" class="btn-sm btn-primary"></input>
-                </form>
+            <div class="card col m-1" >
+                <p class="card-head">Services</p>
+                {% if services|length>0 %}
+                        {% for service in services %}
+                            <p class="card-body">{{service.getNom()}}</p>
+                        {% endfor %}
+                {% endif %}
+                <div class="card-footer text-muted">
+                    <form method="GET" action="{{path('app_service')}}">
+                        <input class="btn-sm btn-primary" type="submit" value="Plus d'info"></input>
+                    </form>
+                </div>
             </div>
+            
         </div>
-        {% endfor %}
     </div>
 {% endblock %}

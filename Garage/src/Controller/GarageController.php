@@ -110,7 +110,7 @@ class GarageController extends AbstractController
                 ->subject("Demande d'info")
                 ->text($form->get('message')->getData());
             $mailer->send($email);
-            return $this->redirectToRoute('app_test');
+            return $this->redirectToRoute('app');
         }
         if($flag == "1" && $car!=null){
             $message = "J'aimerais plus d'info sur la voiture ".$car->getNom()." anonce a ".$car->getPrix()."E";
