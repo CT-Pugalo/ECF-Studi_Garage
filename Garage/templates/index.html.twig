@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <div class="text-center mb-5">
+    <p>Garage V.PARROT</p>
+    <img class="" src="{{ asset('images/logo.png') }}">
+    </div>
+
+    <div class="container text-center" style="width: 100%;">
+        <div class="row">
+            <div class="card col m-1" >
+            <p class="card-title">Notre garage</p>
+            <p class="card-body">Decouvrez un garage cree pour vous par passion</p>
+            </div>
+            <div class="card col m-1" >
+                <p class="card-head">Services</p>
+                {% if services|length>0 %}
+                        {% for service in services %}
+                            <p class="card-body">{{service.getNom()}}</p>
+                        {% endfor %}
+                {% endif %}
+                <div class="card-footer text-muted">
+                    <form method="GET" action="{{path('app_service')}}">
+                        <input class="btn-sm btn-primary" type="submit" value="Plus d'info"></input>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+{% endblock %}

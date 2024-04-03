@@ -1,22 +1,42 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <p>Presentation de nos services:</p>
-    <ul>
+        <div class="container row text-center" style="width: 100%;">
         {% for service in services %}
-            <li>
-            {{service.nom}}
-            {{service.description}}
-            <form method="GET" action="/contact">
-            <input hidden name='flag' value='2'></input>
-            <input hidden name='serviceID' value={{service.getId()}}></input>
-            <input type="submit" value="Plus d'info"></input>
-            </form>
-            <form method="GET" action="/services/update">
-            <input hidden name='flag' value='2'></input>
-            <input hidden name='serviceID' value={{service.getId()}}></input>
-            <input type="submit" value="Modifier"></input>
-            </form>
-            </li>
+        <section class="col me-3">
+        <div class="card" style="width: 18rem;height: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{service.getNom()}}</h5>
+                <p class="card-text">{{service.getDescription()}}</p>
+            </div>
+            <div class="card-footer text-muted">
+                <form method="GET" action="/contact">
+                    <input hidden name='flag' value='2'></input>
+                    <input hidden name='serviceID' value={{service.getId()}}></input>
+                    <input class="btn-sm btn-primary" type="submit" value="Plus d'info"></input>
+                </form>
+                {% if is_granted('ROLE_USER') %}
+                    <form method="GET" action="/services/update">
+                        <input hidden name='flag' value='2'></input>
+                        <input hidden name='serviceID' value={{service.getId()}}></input>
+                        <input class="btn-sm btn-primary" type="submit" value="Modifier"></input>
+                    </form>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <form method="GET" action="/services/delete">
+                        <input hidden name='flag' value='2'></input>
+                        <input hidden name='serviceID' value={{service.getId()}}></input>
+                        <input class="btn-sm btn-primary" type="submit" value="Supprimer"></input>
+                    </form>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        </section>
         {% endfor %}
-    </ul>
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+        <div class="text-center">
+            <button class="btn-sm btn-primary" onclick="window.location.href='{{ path('app_service_add') }}'">Ajouter</button>
+        </div>
+        {% endif %}
 {% endblock %}

@@ -10,11 +10,29 @@
 
 <div class="example-wrapper">
 <section>
+    {% if is_granted('ROLE_USER') %}
+      <button class="btn btn-primary" onclick="window.location.href='{{ path('app_temoignage_register') }}'">Ajouter</button>
+    {% endif %}
     {% for temoignage in temoignages %}
     <div id= '{{ temoignage.getId() }}'>
         {{ temoignage.getTitre() }}<br>
         {{ temoignage.getCommentaire() }}<br>
         {{ temoignage.getNote() }}/5
+        {% if is_granted('ROLE_USER') %}
+        </form>
+            <form method="GET" action="{{ path('app_temoignage_register') }}">
+            <input hidden name='flag' value='3'></input>
+            <input hidden name='temoignageID' value={{temoignage.getId()}}></input>
+            <input type="submit" value="Modifier"></input>
+        </form>
+        {% endif %}
+        {% if is_granted("ROLE_ADMIN") %}
+        <form method="GET" action="{{ path('app_temoignage_delete') }}">
+            <input hidden name='flag' value='3'></input>
+            <input hidden name='temoignageID' value={{temoignage.getId()}}></input>
+            <input type="submit" value="Supprimer"></input>
+        </form>
+        {% endif %}
     </div>
     {% endfor %}
 </section>

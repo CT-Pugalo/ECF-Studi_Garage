@@ -110,7 +110,7 @@ class GarageController extends AbstractController
                 ->subject("Demande d'info")
                 ->text($form->get('message')->getData());
             $mailer->send($email);
-            return $this->redirectToRoute('app_test');
+            return $this->redirectToRoute('app');
         }
         if($flag == "1" && $car!=null){
             $message = "J'aimerais plus d'info sur la voiture ".$car->getNom()." anonce a ".$car->getPrix()."E";
@@ -147,7 +147,7 @@ class GarageController extends AbstractController
             'form'=>$form->createView(),
         ]);
     }
-    #[Route('/services/update', name:'app_service_add')]
+    #[Route('/services/update', name:'app_service_update')]
     public function updateService(EntityManagerInterface $entityManager, Request $request): Response
     {
         if($_GET['serviceID'] && isset($_GET['serviceID'])){
@@ -168,6 +168,25 @@ class GarageController extends AbstractController
         }
 
         return $this->render('services/ajouter.html.twig', [
+            'form'=>$form->createView(),
+        ]);
+    }
+
+    #[Route('/services/delete', name:'app_service_remove')]
+    public function deleteService(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        if($_GET['serviceID'] && isset($_GET['serviceID'])){
+            $service=$entityManager->getRepository(Service::class)->findOneBy(['id' => $_GET['serviceID']]);
+        }
+        $form=$this->createForm(ServiceType::class, $service);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $entityManager->remove($service);
+            $entityManager->flush();
+            return $this->redirectToRoute('app_service');
+        }
+        return $this->render('services/supprimer.html.twig', [
             'form'=>$form->createView(),
         ]);
     }

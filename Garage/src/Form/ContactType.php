@@ -14,10 +14,33 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('contact_mail',TextType::class, ['attr' => ['readonly' => true]])
-            ->add('message', TextareaType::class, array("mapped"=>false))
-            ->add('mail', TextType::class, array("mapped"=>false) )
-        ;
+    ->add('contact_mail',TextType::class, [
+      'attr' => array(
+        'readonly' => true,
+        'class' => "form-control",
+      ),
+      'label_attr' => [
+        'class' => "form-label" 
+      ]
+    ])
+    ->add('message', TextareaType::class, [
+      "mapped"=>false,
+      "attr"=> array(
+        "class" => "form-control"
+      ),
+      'label_attr' => [
+        'class' => "form-label" 
+      ]
+    ])
+    ->add('mail', TextType::class,[ 
+      "mapped"=>false,
+      "attr" => array(
+        "class" => "form-control"
+      ),
+      'label_attr' => [
+        'class' => "form-label" 
+      ]
+    ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

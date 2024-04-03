@@ -23,7 +23,7 @@ class Temoignage
     private ?int $note = null;
 
     #[ORM\ManyToOne(inversedBy: 'temoignages')]
-    private ?User $userid = null;
+    private ?Utilisateur $userid = null;
 
     public function getId(): ?int
     {
@@ -66,12 +66,12 @@ class Temoignage
         return $this;
     }
 
-    public function getUserid(): ?user
+    public function getUserid(): ?Utilisateur
     {
         return $this->userid;
     }
 
-    public function setUserid(?user $userid): static
+    public function setUserid(?Utilisateur $userid): static
     {
         $this->userid = $userid;
 

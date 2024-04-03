@@ -28,7 +28,7 @@ class VoitureRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('u')->getQuery()->getResult();
     }
 
-    public function getMaxKm(): int
+    public function getMaxKm(): array
     {
         $res = $this->createQueryBuilder('Voiture')
         ->select('Voiture.kilometrage')
@@ -36,20 +36,20 @@ class VoitureRepository extends ServiceEntityRepository
         ->getQuery()->getResult();
         $res = array_slice($res, 0, 1);
 
-        return $res[0]["kilometrage"];
+        return $res;
     }
-    public function getMinKm(): int
+    public function getMinKm(): array
     {
         $res = $this->createQueryBuilder('Voiture')
         ->select('Voiture.kilometrage')
         ->addOrderBy('Voiture.kilometrage', Criteria::ASC)
         ->getQuery()->getResult();
         $res = array_slice($res, 0, 1);
-
-        return $res[0]["kilometrage"];
+        
+        return $res;
     }
 
-    public function getMaxPrix(): int
+    public function getMaxPrix(): array
     {
         $res = $this->createQueryBuilder('Voiture')
         ->select('Voiture.prix')
@@ -57,9 +57,9 @@ class VoitureRepository extends ServiceEntityRepository
         ->getQuery()->getResult();
         $res = array_slice($res, 0, 1);
 
-        return $res[0]["prix"];
+        return $res;
     }
-    public function getMinPrix(): int
+    public function getMinPrix(): array
     {
         $res = $this->createQueryBuilder('Voiture')
         ->select('Voiture.prix')
@@ -67,10 +67,10 @@ class VoitureRepository extends ServiceEntityRepository
         ->getQuery()->getResult();
         $res = array_slice($res, 0, 1);
 
-        return $res[0]["prix"];
+        return $res;
     }
 
-    public function getMaxAnnee(): String
+    public function getMaxAnnee(): array
     {
         $res = $this->createQueryBuilder('Voiture')
         ->select('Voiture.annee_circulation')
@@ -78,9 +78,9 @@ class VoitureRepository extends ServiceEntityRepository
         ->getQuery()->getResult();
         $res = array_slice($res, 0, 1);
 
-        return $res[0]["annee_circulation"]->format('Y');
+        return $res;
     }
-    public function getMinAnnee(): String
+    public function getMinAnnee(): array
     {
         $res = $this->createQueryBuilder('Voiture')
         ->select('Voiture.annee_circulation')
@@ -88,7 +88,7 @@ class VoitureRepository extends ServiceEntityRepository
         ->getQuery()->getResult();
         $res = array_slice($res, 0, 1);
 
-        return $res[0]["annee_circulation"]->format('Y');
+        return $res;
     }
 
 //    /**

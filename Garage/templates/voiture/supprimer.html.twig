@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {{ form_start(form) }}
+        <div hidden>{{ form_row(voitureCreating.nom) }}
+        {{ form_row(voitureCreating.image) }}
+        {{ form_row(voitureCreating.prix) }}
+        {{ form_row(voitureCreating.annee_circulation) }}
+        {{ form_row(voitureCreating.kilometrage) }}</div>
+        <input type="submit" value="Etes-vous sur?"></input>
+    {{ form_end(form) }}
+{% endblock %}
